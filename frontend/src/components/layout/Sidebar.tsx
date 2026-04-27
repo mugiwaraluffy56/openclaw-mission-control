@@ -53,9 +53,7 @@ export function Sidebar() {
   return (
     <aside className="w-14 flex flex-col items-center py-3 bg-surface-1 border-r border-border-1 flex-shrink-0">
       <div className="mb-4 mt-1">
-        <div className="w-8 h-8 rounded-lg flex items-center justify-center shadow-lg" style={{ backgroundImage: 'linear-gradient(to top, #ff0844 0%, #ffb199 100%)' }}>
-          <Zap size={14} className="text-white" />
-        </div>
+        <img src="/logo.png" alt="ClawDesk" className="h-8 w-8 rounded-lg object-contain shadow-lg" />
       </div>
 
       <nav className="flex flex-col items-center gap-2 flex-1 overflow-y-auto px-1">

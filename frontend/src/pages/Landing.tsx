@@ -1,5 +1,5 @@
 import { Link, NavLink } from 'react-router-dom'
-import { ArrowRight, LogIn, Zap } from 'lucide-react'
+import { ArrowRight, LogIn } from 'lucide-react'
 import { Features } from '../components/landing/Features'
 import { Hero } from '../components/landing/Hero'
 import { HowItWorks } from '../components/landing/HowItWorks'
@@ -8,13 +8,11 @@ import { Stats } from '../components/landing/Stats'
 
 function PublicShell({ children }: { children: React.ReactNode }) {
   return (
-    <div className="min-h-screen overflow-x-hidden bg-[#080809] text-white">
+    <div className="h-screen overflow-y-auto overflow-x-hidden bg-[#080809] text-white">
       <header className="fixed inset-x-0 top-0 z-40 border-b border-white/10 bg-[#080809]/80 backdrop-blur">
         <div className="mx-auto flex h-14 max-w-6xl items-center justify-between px-4">
           <Link to="/" className="flex items-center gap-2">
-            <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-rose-600 text-white">
-              <Zap size={15} />
-            </span>
+            <img src="/logo.png" alt="ClawDesk" className="h-8 w-8 rounded-lg object-contain" />
             <span className="text-sm font-semibold">ClawDesk</span>
           </Link>
           <nav className="hidden items-center gap-5 text-xs text-zinc-500 md:flex">

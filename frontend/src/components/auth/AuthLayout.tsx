@@ -1,6 +1,5 @@
 import { Outlet, Navigate } from 'react-router-dom'
 import { useAuthStore } from '../../store/auth'
-import { Zap } from 'lucide-react'
 
 export function AuthLayout() {
   const { token } = useAuthStore()
@@ -10,9 +9,7 @@ export function AuthLayout() {
       {/* Left panel */}
       <div className="hidden lg:flex flex-col w-[420px] bg-surface-1 border-r border-border-1 p-10 flex-shrink-0">
         <div className="flex items-center gap-2.5 mb-12">
-          <div className="w-8 h-8 rounded-lg flex items-center justify-center" style={{ backgroundImage: 'linear-gradient(to top, #ff0844 0%, #ffb199 100%)' }}>
-            <Zap size={15} className="text-white" />
-          </div>
+          <img src="/logo.png" alt="ClawDesk" className="h-8 w-8 rounded-lg object-contain" />
           <span className="font-bold text-white text-sm">ClawDesk</span>
         </div>
         <div className="flex-1">
@@ -39,7 +36,7 @@ export function AuthLayout() {
           </div>
         </div>
         <div className="border-t border-border-1 pt-6">
-          <p className="text-2xs text-zinc-700">Your PEM keys are encrypted at rest. We never log or expose private key material.</p>
+          <p className="text-2xs text-zinc-700">Private key material is never returned by API responses. Use encrypted storage for production deployments.</p>
         </div>
       </div>
 
@@ -47,9 +44,7 @@ export function AuthLayout() {
       <div className="flex-1 flex items-center justify-center p-8">
         <div className="w-full max-w-sm">
           <div className="flex items-center gap-2 mb-8 lg:hidden">
-            <div className="w-7 h-7 rounded-lg flex items-center justify-center" style={{ backgroundImage: 'linear-gradient(to top, #ff0844 0%, #ffb199 100%)' }}>
-              <Zap size={13} className="text-white" />
-            </div>
+            <img src="/logo.png" alt="ClawDesk" className="h-7 w-7 rounded-lg object-contain" />
             <span className="font-bold text-white text-sm">ClawDesk</span>
           </div>
           <Outlet />
