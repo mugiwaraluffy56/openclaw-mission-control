@@ -29,7 +29,7 @@ export function HowItWorks() {
     <section className="py-20 px-6 border-y border-border-1" id="how-it-works">
       <div className="max-w-5xl mx-auto">
         <div className="text-center mb-12 space-y-2">
-          <p className="text-xs font-semibold uppercase tracking-wider text-violet-400">Setup</p>
+          <p className="text-xs font-semibold uppercase tracking-wider text-rose-400">Setup</p>
           <h2 className="text-3xl font-bold text-white">Up and running in 3 steps</h2>
         </div>
         <div className="grid md:grid-cols-3 gap-8">
@@ -42,8 +42,8 @@ export function HowItWorks() {
                 )}
                 <div className="space-y-3">
                   <div className="flex items-center gap-3">
-                    <div className="w-10 h-10 rounded-xl bg-violet-500/10 border border-violet-500/20 flex items-center justify-center">
-                      <Icon size={16} className="text-violet-400" />
+                    <div className="w-10 h-10 rounded-xl bg-rose-500/10 border border-rose-500/20 flex items-center justify-center">
+                      <Icon size={16} className="text-rose-400" />
                     </div>
                     <span className="text-3xl font-black text-border-2 select-none">{step.num}</span>
                   </div>

@@ -5,7 +5,7 @@ import { api } from '../../lib/api'
 import { Spinner } from '../ui/Spinner'
 
 const actionConfig: Record<string, { label: string; icon: typeof Activity; color: string }> = {
-  agent_created: { label: 'Agent linked', icon: Bot, color: 'text-violet-400' },
+  agent_created: { label: 'Agent linked', icon: Bot, color: 'text-rose-400' },
   restart: { label: 'Restarted', icon: RefreshCw, color: 'text-amber-400' },
   stop: { label: 'Stopped', icon: Square, color: 'text-red-400' },
   start: { label: 'Started', icon: Play, color: 'text-green-400' },

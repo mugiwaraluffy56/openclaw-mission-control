@@ -20,7 +20,7 @@ export function Switch({ checked, onChange, disabled, label, description }: Prop
         className={clsx(
           'relative inline-flex h-5 w-9 flex-shrink-0 rounded-full border-2 border-transparent',
           'transition-colors duration-200 focus:outline-none',
-          checked ? 'bg-violet-600' : 'bg-surface-3'
+          checked ? 'bg-rose-600' : 'bg-surface-3'
         )}
       >
         <span

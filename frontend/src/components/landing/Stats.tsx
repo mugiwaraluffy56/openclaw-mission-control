@@ -38,7 +38,7 @@ function StatItem({ value, label, suffix, compact, decimal = 0 }: { value: numbe
   return (
     <div className="text-center">
       <p className="font-mono font-black text-3xl text-white tabular-nums">
-        {display}<span className="text-violet-400">{suffix}</span>
+        {display}<span className="text-rose-400">{suffix}</span>
       </p>
       <p className="text-xs text-zinc-600 mt-1">{label}</p>
     </div>

@@ -159,17 +159,17 @@ export function CommandPalette({ open, onClose }: Props) {
                       onClick={() => runCommand(cmd)}
                       className={clsx(
                         'w-full flex items-center gap-3 px-3 py-2 text-left transition-colors',
-                        cursor === idx ? 'bg-violet-500/10 text-white' : 'text-zinc-400 hover:bg-surface-2 hover:text-white'
+                        cursor === idx ? 'bg-rose-500/10 text-white' : 'text-zinc-400 hover:bg-surface-2 hover:text-white'
                       )}
                     >
-                      <span className={clsx('flex-shrink-0', cursor === idx ? 'text-violet-400' : 'text-zinc-600')}>
+                      <span className={clsx('flex-shrink-0', cursor === idx ? 'text-rose-400' : 'text-zinc-600')}>
                         {cmd.icon}
                       </span>
                       <div className="flex-1 min-w-0">
                         <span className="text-xs font-medium">{cmd.label}</span>
                         {cmd.sub && <span className="ml-2 text-2xs text-zinc-600 font-mono">{cmd.sub}</span>}
                       </div>
-                      {cursor === idx && <ArrowRight size={12} className="text-violet-400 flex-shrink-0" />}
+                      {cursor === idx && <ArrowRight size={12} className="text-rose-400 flex-shrink-0" />}
                     </button>
                   )
                 })}

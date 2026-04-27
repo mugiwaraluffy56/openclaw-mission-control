@@ -8,12 +8,12 @@ interface Props {
   trend?: 'up' | 'down' | 'flat'
   trendLabel?: string
   icon?: React.ReactNode
-  color?: 'violet' | 'green' | 'blue' | 'amber' | 'red' | 'zinc'
+  color?: 'rose' | 'green' | 'blue' | 'amber' | 'red' | 'zinc'
   className?: string
 }
 
 const colorMap = {
-  violet: { bg: 'bg-violet-500/10', border: 'border-violet-500/20', text: 'text-violet-400', icon: 'text-violet-400' },
+  rose: { bg: 'bg-rose-500/10', border: 'border-rose-500/20', text: 'text-rose-400', icon: 'text-rose-400' },
   green: { bg: 'bg-green-500/10', border: 'border-green-500/20', text: 'text-green-400', icon: 'text-green-400' },
   blue: { bg: 'bg-blue-500/10', border: 'border-blue-500/20', text: 'text-blue-400', icon: 'text-blue-400' },
   amber: { bg: 'bg-amber-500/10', border: 'border-amber-500/20', text: 'text-amber-400', icon: 'text-amber-400' },

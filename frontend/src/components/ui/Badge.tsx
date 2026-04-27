@@ -2,12 +2,12 @@ import clsx from 'clsx'
 
 interface Props {
   children: React.ReactNode
-  variant?: 'violet' | 'green' | 'blue' | 'red' | 'amber' | 'gray'
+  variant?: 'rose' | 'green' | 'blue' | 'red' | 'amber' | 'gray'
   dot?: boolean
 }
 
 const variants = {
-  violet: 'bg-violet-500/10 text-violet-300 border-violet-500/20',
+  rose: 'bg-rose-500/10 text-rose-300 border-rose-500/20',
   green: 'bg-green-500/10 text-green-400 border-green-500/20',
   blue: 'bg-blue-500/10 text-blue-400 border-blue-500/20',
   red: 'bg-red-500/10 text-red-400 border-red-500/20',
@@ -16,7 +16,7 @@ const variants = {
 }
 
 const dotColors = {
-  violet: 'bg-violet-400', green: 'bg-green-400', blue: 'bg-blue-400',
+  rose: 'bg-rose-400', green: 'bg-green-400', blue: 'bg-blue-400',
   red: 'bg-red-400', amber: 'bg-amber-400', gray: 'bg-zinc-500',
 }
 

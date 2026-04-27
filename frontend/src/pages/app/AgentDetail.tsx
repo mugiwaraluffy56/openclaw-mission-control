@@ -97,8 +97,8 @@ export function AgentDetail() {
         </div>
         <div className="flex items-start justify-between gap-4">
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-xl bg-violet-500/10 border border-violet-500/20 flex items-center justify-center">
-              <Bot size={18} className="text-violet-400" />
+            <div className="w-10 h-10 rounded-xl bg-rose-500/10 border border-rose-500/20 flex items-center justify-center">
+              <Bot size={18} className="text-rose-400" />
             </div>
             <div>
               <div className="flex items-center gap-2">
@@ -205,7 +205,7 @@ export function AgentDetail() {
                 <textarea
                   value={configText}
                   onChange={(e) => { setConfigText(e.target.value); setConfigDirty(true) }}
-                  className="w-full h-[calc(100vh-320px)] bg-surface-1 border border-border-1 rounded-xl p-4 font-mono text-xs text-zinc-300 outline-none focus:border-violet-500/40 resize-none leading-relaxed"
+                  className="w-full h-[calc(100vh-320px)] bg-surface-1 border border-border-1 rounded-xl p-4 font-mono text-xs text-zinc-300 outline-none focus:border-rose-500/40 resize-none leading-relaxed"
                   spellCheck={false}
                 />
               </>

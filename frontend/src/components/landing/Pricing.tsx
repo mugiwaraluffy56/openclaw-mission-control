@@ -65,7 +65,7 @@ export function Pricing() {
     <section className="py-20 px-6" id="pricing">
       <div className="max-w-5xl mx-auto">
         <div className="text-center mb-12 space-y-2">
-          <p className="text-xs font-semibold uppercase tracking-wider text-violet-400">Pricing</p>
+          <p className="text-xs font-semibold uppercase tracking-wider text-rose-400">Pricing</p>
           <h2 className="text-3xl font-bold text-white">Simple, predictable pricing</h2>
           <p className="text-sm text-zinc-500">No per-agent fees. No surprise bills. Start free, upgrade when you need to.</p>
         </div>
@@ -75,13 +75,13 @@ export function Pricing() {
               key={plan.name}
               className={`relative rounded-xl border p-6 flex flex-col ${
                 plan.highlight
-                  ? 'bg-violet-600/5 border-violet-500/40 ring-1 ring-violet-500/20'
+                  ? 'bg-rose-600/5 border-rose-500/40 ring-1 ring-rose-500/20'
                   : 'bg-surface-1 border-border-1'
               }`}
             >
               {plan.highlight && (
                 <div className="absolute -top-3 left-1/2 -translate-x-1/2">
-                  <span className="bg-violet-600 text-white text-2xs font-bold px-3 py-1 rounded-full">Most popular</span>
+                  <span className="bg-rose-600 text-white text-2xs font-bold px-3 py-1 rounded-full">Most popular</span>
                 </div>
               )}
               <div className="mb-4">
@@ -95,7 +95,7 @@ export function Pricing() {
               <ul className="space-y-2 flex-1 mb-6">
                 {plan.features.map((f) => (
                   <li key={f} className="flex items-start gap-2">
-                    <Check size={12} className="text-violet-400 mt-0.5 flex-shrink-0" />
+                    <Check size={12} className="text-rose-400 mt-0.5 flex-shrink-0" />
                     <span className="text-xs text-zinc-400">{f}</span>
                   </li>
                 ))}
@@ -104,7 +104,7 @@ export function Pricing() {
                 to={plan.ctaTo}
                 className={`w-full h-9 flex items-center justify-center rounded-lg text-sm font-semibold transition-colors ${
                   plan.highlight
-                    ? 'bg-violet-600 hover:bg-violet-500 text-white'
+                    ? 'bg-rose-600 hover:bg-rose-500 text-white'
                     : 'bg-surface-2 hover:bg-surface-3 text-zinc-300 border border-border-2'
                 }`}
               >

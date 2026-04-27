@@ -15,7 +15,7 @@ function getLineClass(line: string) {
   return 'text-zinc-600'
 }
 
-export function LogViewer({ agentId, agentName, accent = 'violet' }: Props) {
+export function LogViewer({ agentId, agentName, accent = 'rose' }: Props) {
   const [lines, setLines] = useState<string[]>([])
   const [connected, setConnected] = useState(false)
   const [filter, setFilter] = useState('')
@@ -23,7 +23,7 @@ export function LogViewer({ agentId, agentName, accent = 'violet' }: Props) {
   const bottomRef = useRef<HTMLDivElement>(null)
   const wsRef = useRef<WebSocket | null>(null)
 
-  const accentColor = accent === 'green' ? 'text-green-400 border-green-500/20' : accent === 'blue' ? 'text-blue-400 border-blue-500/20' : 'text-violet-400 border-violet-500/20'
+  const accentColor = accent === 'green' ? 'text-green-400 border-green-500/20' : accent === 'blue' ? 'text-blue-400 border-blue-500/20' : 'text-rose-400 border-rose-500/20'
 
   useEffect(() => {
     const url = wsLogsUrl(agentId)

@@ -39,7 +39,7 @@ interface Props {
 
 export function FleetChart({ type = 'area', title, sub, dataKey = 'online' }: Props) {
   const keys = Array.isArray(dataKey) ? dataKey : [dataKey]
-  const colors = ['#7c3aed', '#22c55e', '#3b82f6', '#f59e0b']
+  const colors = ['#ff0844', '#22c55e', '#ffb199', '#f59e0b']
 
   return (
     <div className="bg-surface-1 border border-border-1 rounded-xl p-4">

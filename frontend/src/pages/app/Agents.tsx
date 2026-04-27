@@ -75,7 +75,7 @@ export function Agents() {
             <div key={a.id} onClick={() => navigate(`/app/agents/${a.id}`)}
               className="grid grid-cols-[1fr,auto,auto,auto,auto] gap-4 px-4 py-3 border-b border-border-1 last:border-0 hover:bg-surface-2 cursor-pointer items-center transition-colors">
               <div className="flex items-center gap-2.5">
-                <div className="w-6 h-6 rounded bg-violet-500/10 flex items-center justify-center text-violet-400 text-2xs font-bold">{a.name[0]}</div>
+                <div className="w-6 h-6 rounded bg-rose-500/10 flex items-center justify-center text-rose-400 text-2xs font-bold">{a.name[0]}</div>
                 <div>
                   <p className="text-xs font-medium text-white">{a.name}</p>
                   {a.description && <p className="text-2xs text-zinc-600 truncate max-w-48">{a.description}</p>}

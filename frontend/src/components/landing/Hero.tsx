@@ -50,13 +50,13 @@ export function Hero() {
       <div className="absolute inset-0 bg-[linear-gradient(to_right,#1e1e2210_1px,transparent_1px),linear-gradient(to_bottom,#1e1e2210_1px,transparent_1px)] bg-[size:32px_32px]" />
       <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-[#080809]" />
       {/* Glow */}
-      <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-violet-600/10 rounded-full blur-[120px] pointer-events-none" />
+      <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-rose-600/10 rounded-full blur-[120px] pointer-events-none" />
 
       <div className="relative max-w-6xl w-full mx-auto grid lg:grid-cols-2 gap-16 items-center">
         {/* Left */}
         <div className="space-y-7">
-          <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-violet-500/10 border border-violet-500/20 rounded-full text-xs text-violet-300">
-            <span className="w-1.5 h-1.5 rounded-full bg-violet-400 animate-pulse" />
+          <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-rose-500/10 border border-rose-500/20 rounded-full text-xs text-rose-300">
+            <span className="w-1.5 h-1.5 rounded-full bg-rose-400 animate-pulse" />
             Now in public beta. Free to start.
           </div>
 
@@ -76,7 +76,7 @@ export function Hero() {
           <div className="flex flex-wrap items-center gap-3">
             <Link
               to="/auth/signup"
-              className="inline-flex items-center gap-2 h-10 px-5 bg-violet-600 hover:bg-violet-500 text-white text-sm font-semibold rounded-lg transition-colors"
+              className="inline-flex items-center gap-2 h-10 px-5 bg-rose-600 hover:bg-rose-500 text-white text-sm font-semibold rounded-lg transition-colors"
             >
               Get started free <ArrowRight size={14} />
             </Link>
@@ -107,7 +107,7 @@ export function Hero() {
                 <div className="w-3 h-3 rounded-full bg-green-500/60" />
               </div>
               <div className="flex-1 flex items-center justify-center gap-2">
-                <Zap size={11} className="text-violet-400" />
+                <Zap size={11} className="text-rose-400" />
                 <span className="text-2xs text-zinc-500 font-mono">openclaw · prod-agent-01 · live</span>
                 <span className="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse" />
               </div>
@@ -122,8 +122,8 @@ export function Hero() {
                 />
               ))}
               <div className="flex items-center gap-1 text-zinc-600 mt-1">
-                <span className="text-violet-400">›</span>
-                <span className="w-2 h-4 bg-violet-400 animate-pulse rounded-sm" />
+                <span className="text-rose-400">›</span>
+                <span className="w-2 h-4 bg-rose-400 animate-pulse rounded-sm" />
               </div>
             </div>
           </div>

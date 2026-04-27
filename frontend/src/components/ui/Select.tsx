@@ -23,7 +23,7 @@ export function Select({ value, onChange, options, className, placeholder, disab
       className={clsx(
         'h-7 px-2.5 pr-7 rounded-md text-xs text-zinc-300 font-medium',
         'bg-surface-2 border border-border-1 outline-none appearance-none',
-        'hover:border-border-2 focus:border-violet-500/50 transition-colors',
+        'hover:border-border-2 focus:border-rose-500/50 transition-colors',
         'disabled:opacity-50 disabled:cursor-not-allowed',
         className
       )}

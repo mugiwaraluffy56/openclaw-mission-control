@@ -10,7 +10,7 @@ import { Info } from 'lucide-react'
 
 interface Props { open: boolean; onClose: () => void }
 
-const ACCENTS = ['violet', 'green', 'blue', 'amber', 'red']
+const ACCENTS = ['rose', 'green', 'blue', 'amber', 'red']
 
 const STEPS = ['Basic Info', 'Connection', 'Config']
 
@@ -19,7 +19,7 @@ export function AddAgentModal({ open, onClose }: Props) {
   const qc = useQueryClient()
   const [form, setForm] = useState<CreateAgentForm>({
     name: '', ip: '', pem_content: '', gateway_token: '',
-    model: 'claude-cli/claude-haiku-4-5', accent: 'violet', description: '',
+    model: 'claude-cli/claude-haiku-4-5', accent: 'rose', description: '',
   })
 
   const set = (k: keyof CreateAgentForm, v: string) => setForm((f) => ({ ...f, [k]: v }))
@@ -31,7 +31,7 @@ export function AddAgentModal({ open, onClose }: Props) {
       qc.invalidateQueries({ queryKey: ['agents'] })
       onClose()
       setStep(0)
-      setForm({ name: '', ip: '', pem_content: '', gateway_token: '', model: 'claude-cli/claude-haiku-4-5', accent: 'violet', description: '' })
+      setForm({ name: '', ip: '', pem_content: '', gateway_token: '', model: 'claude-cli/claude-haiku-4-5', accent: 'rose', description: '' })
     },
     onError: (e: Error) => toast.error(e.message),
   })
@@ -42,10 +42,10 @@ export function AddAgentModal({ open, onClose }: Props) {
       <div className="flex items-center gap-0 mb-6">
         {STEPS.map((s, i) => (
           <div key={s} className="flex items-center flex-1">
-            <div className={`flex items-center justify-center w-6 h-6 rounded-full text-2xs font-semibold flex-shrink-0 ${i <= step ? 'bg-violet-600 text-white' : 'bg-surface-3 text-zinc-600'}`}>{i + 1}</div>
+            <div className={`flex items-center justify-center w-6 h-6 rounded-full text-2xs font-semibold flex-shrink-0 ${i <= step ? 'bg-rose-600 text-white' : 'bg-surface-3 text-zinc-600'}`}>{i + 1}</div>
             <div className="flex-1 mx-1.5">
               <p className={`text-2xs ${i <= step ? 'text-zinc-300' : 'text-zinc-600'}`}>{s}</p>
-              {i < STEPS.length - 1 && <div className={`h-px mt-1 ${i < step ? 'bg-violet-600' : 'bg-surface-3'}`} />}
+              {i < STEPS.length - 1 && <div className={`h-px mt-1 ${i < step ? 'bg-rose-600' : 'bg-surface-3'}`} />}
             </div>
           </div>
         ))}
@@ -59,7 +59,7 @@ export function AddAgentModal({ open, onClose }: Props) {
             <div className="flex gap-2">
               {ACCENTS.map((a) => (
                 <button key={a} onClick={() => set('accent', a)} className={`w-7 h-7 rounded-lg border-2 transition-all ${form.accent === a ? 'border-white scale-110' : 'border-transparent opacity-60'}`}
-                  style={{ background: a === 'violet' ? '#7c3aed' : a === 'green' ? '#16a34a' : a === 'blue' ? '#1d4ed8' : a === 'amber' ? '#d97706' : '#dc2626' }} />
+                  style={{ background: a === 'rose' ? '#ff0844' : a === 'green' ? '#16a34a' : a === 'blue' ? '#1d4ed8' : a === 'amber' ? '#d97706' : '#dc2626' }} />
               ))}
             </div>
           </div>

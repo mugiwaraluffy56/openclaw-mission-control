@@ -70,7 +70,7 @@ export function Sidebar() {
                   className={({ isActive }) => clsx(
                     'w-9 h-9 flex items-center justify-center rounded-lg transition-all duration-150',
                     isActive
-                      ? 'bg-violet-500/15 text-violet-400 ring-1 ring-violet-500/20'
+                      ? 'bg-rose-500/15 text-rose-400 ring-1 ring-rose-500/20'
                       : 'text-zinc-600 hover:text-zinc-400 hover:bg-surface-2'
                   )}
                 >

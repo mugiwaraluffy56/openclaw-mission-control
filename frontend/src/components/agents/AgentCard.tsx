@@ -13,14 +13,14 @@ import toast from 'react-hot-toast'
 
 interface Props { agent: AgentStatus }
 
-const accentMap: Record<string, 'green' | 'blue' | 'violet' | 'amber'> = {
-  green: 'green', blue: 'blue', violet: 'violet', amber: 'amber',
+const accentMap: Record<string, 'green' | 'blue' | 'rose' | 'amber'> = {
+  green: 'green', blue: 'blue', rose: 'rose', amber: 'amber',
 }
 
 export function AgentCard({ agent }: Props) {
   const navigate = useNavigate()
   const qc = useQueryClient()
-  const accent = accentMap[agent.accent] ?? 'violet'
+  const accent = accentMap[agent.accent] ?? 'rose'
 
   const mutate = (fn: () => Promise<unknown>, msg: string) =>
     useMutation({
@@ -44,7 +44,7 @@ export function AgentCard({ agent }: Props) {
               accent === 'green' ? 'bg-green-500/10 text-green-400' :
               accent === 'blue' ? 'bg-blue-500/10 text-blue-400' :
               accent === 'amber' ? 'bg-amber-500/10 text-amber-400' :
-              'bg-violet-500/10 text-violet-400'
+              'bg-rose-500/10 text-rose-400'
             )}>
               {agent.name[0]?.toUpperCase()}
             </div>

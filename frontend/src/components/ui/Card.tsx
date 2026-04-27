@@ -8,7 +8,7 @@ interface Props {
 }
 
 const accentBorder: Record<string, string> = {
-  violet: 'border-violet-500/20 hover:border-violet-500/40',
+  rose: 'border-rose-500/20 hover:border-rose-500/40',
   green: 'border-green-500/20 hover:border-green-500/40',
   blue: 'border-blue-500/20 hover:border-blue-500/40',
   amber: 'border-amber-500/20 hover:border-amber-500/40',

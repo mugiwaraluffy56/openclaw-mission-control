@@ -45,7 +45,7 @@ export function Signup() {
       <p className="text-2xs text-zinc-700 text-center mt-4">By signing up you agree to our terms. PEM keys are encrypted at rest.</p>
       <p className="text-xs text-zinc-600 text-center mt-3">
         Already have an account?{' '}
-        <Link to="/auth/login" className="text-violet-400 hover:text-violet-300">Sign in</Link>
+        <Link to="/auth/login" className="text-rose-400 hover:text-rose-300">Sign in</Link>
       </p>
     </div>
   )

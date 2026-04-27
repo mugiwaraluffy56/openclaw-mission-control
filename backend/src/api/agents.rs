@@ -38,7 +38,7 @@ pub async fn create(
         pem_content: body.pem_content,
         gateway_token: body.gateway_token,
         model: body.model.unwrap_or_else(|| "unknown".to_string()),
-        accent: body.accent.unwrap_or_else(|| "violet".to_string()),
+        accent: body.accent.unwrap_or_else(|| "rose".to_string()),
         description: body.description,
         created_at: chrono::Utc::now().to_rfc3339(),
     };

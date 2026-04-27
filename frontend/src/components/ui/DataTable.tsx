@@ -84,7 +84,7 @@ export function DataTable<T>({
                     type="checkbox"
                     checked={data.length > 0 && selectedKeys.size === data.length}
                     onChange={toggleAll}
-                    className="accent-violet-600 w-3.5 h-3.5 cursor-pointer"
+                    className="accent-rose-600 w-3.5 h-3.5 cursor-pointer"
                   />
                 </th>
               )}
@@ -101,7 +101,7 @@ export function DataTable<T>({
                   <div className="flex items-center gap-1">
                     {flexRender(header.column.columnDef.header, header.getContext())}
                     {header.column.getCanSort() && header.column.getIsSorted() && (
-                      header.column.getIsSorted() === 'asc' ? <ChevronUp size={10} className="text-violet-400" /> : <ChevronDown size={10} className="text-violet-400" />
+                      header.column.getIsSorted() === 'asc' ? <ChevronUp size={10} className="text-rose-400" /> : <ChevronDown size={10} className="text-rose-400" />
                     )}
                   </div>
                 </th>
@@ -127,7 +127,7 @@ export function DataTable<T>({
                     className={clsx(
                       'border-b border-border-1 last:border-0 transition-colors',
                       onRowClick && 'cursor-pointer hover:bg-surface-2',
-                      selected && 'bg-violet-500/5'
+                      selected && 'bg-rose-500/5'
                     )}
                   >
                     {selectable && (
@@ -136,7 +136,7 @@ export function DataTable<T>({
                           type="checkbox"
                           checked={selected}
                           onChange={() => toggleRow(key)}
-                          className="accent-violet-600 w-3.5 h-3.5 cursor-pointer"
+                          className="accent-rose-600 w-3.5 h-3.5 cursor-pointer"
                         />
                       </td>
                     )}

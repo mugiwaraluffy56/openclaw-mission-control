@@ -6,8 +6,8 @@ import { Spinner } from '../../components/ui/Spinner'
 import { EmptyState } from '../../components/ui/EmptyState'
 import { Badge } from '../../components/ui/Badge'
 
-const actionConfig: Record<string, { label: string; icon: typeof Activity; variant: 'violet' | 'green' | 'blue' | 'red' | 'amber' | 'gray' }> = {
-  agent_created: { label: 'Agent Linked', icon: Bot, variant: 'violet' },
+const actionConfig: Record<string, { label: string; icon: typeof Activity; variant: 'rose' | 'green' | 'blue' | 'red' | 'amber' | 'gray' }> = {
+  agent_created: { label: 'Agent Linked', icon: Bot, variant: 'rose' },
   restart: { label: 'Restarted', icon: RefreshCw, variant: 'amber' },
   stop: { label: 'Stopped', icon: Square, variant: 'red' },
   start: { label: 'Started', icon: Play, variant: 'green' },

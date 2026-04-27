@@ -7,7 +7,7 @@ interface Props extends React.ButtonHTMLAttributes<HTMLButtonElement> {
 }
 
 const variants = {
-  primary: 'bg-violet-600 hover:bg-violet-500 text-white border border-violet-500',
+  primary: 'bg-rose-600 hover:bg-rose-500 text-white border border-rose-500',
   secondary: 'bg-surface-2 hover:bg-surface-3 text-white border border-border-1 hover:border-border-2',
   danger: 'bg-red-600/10 hover:bg-red-600/20 text-red-400 border border-red-600/20 hover:border-red-600/40',
   ghost: 'hover:bg-surface-2 text-zinc-400 hover:text-white border border-transparent',

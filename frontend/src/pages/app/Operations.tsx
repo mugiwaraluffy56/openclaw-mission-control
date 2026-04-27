@@ -125,7 +125,7 @@ function AgentAssignment({ agents }: { agents: AgentStatus[] }) {
       {agents.map((a) => (
         <label key={a.id} className="flex items-center justify-between px-3 py-2 border-b border-border-1 last:border-0">
           <span className="flex items-center gap-2 text-xs"><StatusDot active={a.active} />{a.name}<span className="font-mono text-zinc-600">{a.ip}</span></span>
-          <input type="checkbox" className="accent-violet-600" />
+          <input type="checkbox" className="accent-rose-600" />
         </label>
       ))}
     </div>
@@ -151,7 +151,7 @@ export function Team() {
   const invite = useMutation({ mutationFn: () => api.team.invite(email, 'operator'), onSuccess: () => { toast.success('Invite queued'); setEmail(''); qc.invalidateQueries({ queryKey: ['team'] }) } })
   const cols: Column<TeamMember>[] = [
     { key: 'name', header: 'Member', sortable: true, render: (m) => <div><div className="text-white">{m.name ?? m.email}</div><div className="text-2xs text-zinc-600">{m.email}</div></div> },
-    { key: 'role', header: 'Role', render: (m) => <Badge variant={m.role === 'owner' ? 'violet' : 'gray'}>{m.role}</Badge> },
+    { key: 'role', header: 'Role', render: (m) => <Badge variant={m.role === 'owner' ? 'rose' : 'gray'}>{m.role}</Badge> },
     { key: 'status', header: 'Status', render: (m) => <Badge variant={m.status === 'active' ? 'green' : 'amber'}>{m.status}</Badge> },
     { key: 'joined', header: 'Joined', render: (m) => <span className="font-mono">{m.created_at?.slice(0, 10)}</span> },
     { key: 'actions', header: '', render: () => <Button size="xs" variant="ghost">Edit</Button> },
@@ -249,9 +249,9 @@ export function Analytics() {
     <PageShell title="Analytics" eyebrow="Operational intelligence">
       <div className="grid grid-cols-2 xl:grid-cols-4 gap-3"><DenseMetric label="Messages" value="3.3k" sub="+18.4%" /><DenseMetric label="Errors" value="41" sub="-7.2%" /><DenseMetric label="Uptime" value="99.96%" sub="30d" /><DenseMetric label="Spend" value="$184" sub="month to date" /></div>
       <div className="grid grid-cols-1 xl:grid-cols-2 gap-3">
-        <ChartCard title="Message volume"><BarChart data={timeline}><CartesianGrid stroke="#222" /><XAxis dataKey="t" /><YAxis /><ChartTooltip /><Bar dataKey="messages" fill="#8b5cf6" /></BarChart></ChartCard>
+        <ChartCard title="Message volume"><BarChart data={timeline}><CartesianGrid stroke="#222" /><XAxis dataKey="t" /><YAxis /><ChartTooltip /><Bar dataKey="messages" fill="#ff0844" /></BarChart></ChartCard>
         <ChartCard title="Error rate"><LineChart data={timeline}><CartesianGrid stroke="#222" /><XAxis dataKey="t" /><YAxis /><ChartTooltip /><Line dataKey="errors" stroke="#f43f5e" /></LineChart></ChartCard>
-        <ChartCard title="Model usage"><PieChart><Pie data={modelData} dataKey="value" nameKey="name" outerRadius={90}>{modelData.map((_, i) => <Cell key={i} fill={['#8b5cf6', '#22c55e', '#38bdf8'][i]} />)}</Pie><ChartTooltip /></PieChart></ChartCard>
+        <ChartCard title="Model usage"><PieChart><Pie data={modelData} dataKey="value" nameKey="name" outerRadius={90}>{modelData.map((_, i) => <Cell key={i} fill={['#ff0844', '#22c55e', '#38bdf8'][i]} />)}</Pie><ChartTooltip /></PieChart></ChartCard>
         <ChartCard title="Agent uptime"><AreaChart data={timeline}><CartesianGrid stroke="#222" /><XAxis dataKey="t" /><YAxis domain={[99.8, 100]} /><ChartTooltip /><Area dataKey="uptime" stroke="#22c55e" fill="#22c55e33" /></AreaChart></ChartCard>
       </div>
     </PageShell>

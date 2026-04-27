@@ -5,7 +5,7 @@ const FEATURES = [
     icon: Bot,
     title: 'Multi-tenant fleet',
     desc: 'Manage dozens of OpenClaw instances across different servers from a single dashboard. Full isolation per user.',
-    color: 'violet',
+    color: 'rose',
   },
   {
     icon: Activity,
@@ -29,7 +29,7 @@ const FEATURES = [
     icon: Users,
     title: 'Team management',
     desc: 'Invite team members with role-based access: Owner, Admin, or Viewer. Full audit trail of all actions.',
-    color: 'violet',
+    color: 'rose',
   },
   {
     icon: BarChart2,
@@ -59,12 +59,12 @@ const FEATURES = [
     icon: Key,
     title: 'API access',
     desc: 'Full REST API with API key authentication. Automate fleet management from CI/CD pipelines or scripts.',
-    color: 'violet',
+    color: 'rose',
   },
 ]
 
 const colorMap: Record<string, { bg: string; border: string; text: string }> = {
-  violet: { bg: 'bg-violet-500/10', border: 'border-violet-500/20', text: 'text-violet-400' },
+  rose: { bg: 'bg-rose-500/10', border: 'border-rose-500/20', text: 'text-rose-400' },
   green: { bg: 'bg-green-500/10', border: 'border-green-500/20', text: 'text-green-400' },
   blue: { bg: 'bg-blue-500/10', border: 'border-blue-500/20', text: 'text-blue-400' },
   amber: { bg: 'bg-amber-500/10', border: 'border-amber-500/20', text: 'text-amber-400' },
@@ -76,7 +76,7 @@ export function Features() {
     <section className="py-20 px-6" id="features">
       <div className="max-w-6xl mx-auto">
         <div className="text-center mb-12 space-y-2">
-          <p className="text-xs font-semibold uppercase tracking-wider text-violet-400">Features</p>
+          <p className="text-xs font-semibold uppercase tracking-wider text-rose-400">Features</p>
           <h2 className="text-3xl font-bold text-white">Everything you need to run a fleet</h2>
           <p className="text-sm text-zinc-500 max-w-lg mx-auto">
             Built for DevOps teams managing AI agents in production. No fluff, just the tools you actually need.
@@ -91,7 +91,7 @@ export function Features() {
                 <div className={`w-8 h-8 rounded-lg ${c.bg} border ${c.border} flex items-center justify-center mb-3`}>
                   <Icon size={14} className={c.text} />
                 </div>
-                <h3 className="text-xs font-bold text-white mb-1.5 group-hover:text-violet-300 transition-colors">{f.title}</h3>
+                <h3 className="text-xs font-bold text-white mb-1.5 group-hover:text-rose-300 transition-colors">{f.title}</h3>
                 <p className="text-2xs text-zinc-600 leading-relaxed">{f.desc}</p>
               </div>
             )

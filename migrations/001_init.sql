@@ -18,7 +18,7 @@ CREATE TABLE IF NOT EXISTS agents (
   pem_content TEXT NOT NULL,
   gateway_token TEXT NOT NULL,
   model TEXT NOT NULL DEFAULT 'unknown',
-  accent TEXT NOT NULL DEFAULT 'violet',
+  accent TEXT NOT NULL DEFAULT 'rose',
   description TEXT,
   created_at TEXT NOT NULL DEFAULT (datetime('now'))
 );

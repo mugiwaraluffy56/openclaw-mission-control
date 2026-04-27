@@ -42,7 +42,7 @@ export function AgentTable({ agents }: Props) {
               >
                 <td className="px-3 py-2.5">
                   <div className="flex items-center gap-2.5">
-                    <div className="w-6 h-6 rounded bg-violet-500/10 border border-violet-500/20 flex items-center justify-center text-violet-400 text-2xs font-bold flex-shrink-0">
+                    <div className="w-6 h-6 rounded bg-rose-500/10 border border-rose-500/20 flex items-center justify-center text-rose-400 text-2xs font-bold flex-shrink-0">
                       {a.name[0]?.toUpperCase()}
                     </div>
                     <div className="min-w-0">

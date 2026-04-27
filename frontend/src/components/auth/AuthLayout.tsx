@@ -30,8 +30,8 @@ export function AuthLayout() {
               'Session viewer and activity tracking',
             ].map((f) => (
               <div key={f} className="flex items-center gap-2.5 text-sm text-zinc-400">
-                <div className="w-4 h-4 rounded-full bg-violet-500/20 border border-violet-500/30 flex items-center justify-center flex-shrink-0">
-                  <div className="w-1.5 h-1.5 rounded-full bg-violet-400" />
+                <div className="w-4 h-4 rounded-full bg-rose-500/20 border border-rose-500/30 flex items-center justify-center flex-shrink-0">
+                  <div className="w-1.5 h-1.5 rounded-full bg-rose-400" />
                 </div>
                 {f}
               </div>

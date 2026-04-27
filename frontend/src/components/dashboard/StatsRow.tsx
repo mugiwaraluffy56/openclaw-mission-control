@@ -8,7 +8,7 @@ export function StatsRow({ agents }: Props) {
   const offline = agents.length - online
 
   const stats = [
-    { label: 'Total Agents', value: agents.length, icon: Bot, color: 'text-violet-400', bg: 'bg-violet-500/10' },
+    { label: 'Total Agents', value: agents.length, icon: Bot, color: 'text-rose-400', bg: 'bg-rose-500/10' },
     { label: 'Online', value: online, icon: CheckCircle, color: 'text-green-400', bg: 'bg-green-500/10' },
     { label: 'Offline', value: offline, icon: XCircle, color: 'text-red-400', bg: 'bg-red-500/10' },
     { label: 'Uptime', value: online > 0 ? `${Math.round((online / agents.length) * 100)}%` : 'N/A', icon: Activity, color: 'text-blue-400', bg: 'bg-blue-500/10' },

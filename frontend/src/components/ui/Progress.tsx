@@ -4,12 +4,12 @@ interface Props {
   value: number
   max?: number
   className?: string
-  color?: 'violet' | 'green' | 'blue' | 'amber' | 'red'
+  color?: 'rose' | 'green' | 'blue' | 'amber' | 'red'
   size?: 'xs' | 'sm' | 'md'
 }
 
 const colorMap = {
-  violet: 'bg-violet-500',
+  rose: 'bg-rose-500',
   green: 'bg-green-500',
   blue: 'bg-blue-500',
   amber: 'bg-amber-500',
@@ -22,7 +22,7 @@ const sizeMap = {
   md: 'h-1.5',
 }
 
-export function Progress({ value, max = 100, className, color = 'violet', size = 'sm' }: Props) {
+export function Progress({ value, max = 100, className, color = 'rose', size = 'sm' }: Props) {
   const pct = Math.min(100, Math.max(0, (value / max) * 100))
   return (
     <div className={clsx('w-full rounded-full bg-surface-3', sizeMap[size], className)}>

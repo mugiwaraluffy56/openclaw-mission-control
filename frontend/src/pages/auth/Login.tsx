@@ -54,7 +54,7 @@ export function Login() {
 
       <p className="text-xs text-zinc-600 text-center mt-5">
         Don't have an account?{' '}
-        <Link to="/auth/signup" className="text-violet-400 hover:text-violet-300">Sign up</Link>
+        <Link to="/auth/signup" className="text-rose-400 hover:text-rose-300">Sign up</Link>
       </p>
     </div>
   )

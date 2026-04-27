@@ -12,7 +12,7 @@ export function Landing() {
       <header className="fixed inset-x-0 top-0 z-40 border-b border-white/10 bg-[#080809]/80 backdrop-blur">
         <div className="mx-auto flex h-14 max-w-6xl items-center justify-between px-4">
           <Link to="/" className="flex items-center gap-2">
-            <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-violet-600 text-white">
+            <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-rose-600 text-white">
               <Zap size={15} />
             </span>
             <span className="text-sm font-semibold">ClawDesk</span>
@@ -26,7 +26,7 @@ export function Landing() {
             <Link to="/auth/login" className="hidden h-8 items-center gap-1.5 rounded-md px-3 text-xs font-medium text-zinc-400 hover:bg-white/5 hover:text-white sm:flex">
               <LogIn size={13} /> Sign in
             </Link>
-            <Link to="/auth/signup" className="inline-flex h-8 items-center gap-1.5 rounded-md bg-violet-600 px-3 text-xs font-semibold text-white hover:bg-violet-500">
+            <Link to="/auth/signup" className="inline-flex h-8 items-center gap-1.5 rounded-md bg-rose-600 px-3 text-xs font-semibold text-white hover:bg-rose-500">
               Get started <ArrowRight size={13} />
             </Link>
           </div>
