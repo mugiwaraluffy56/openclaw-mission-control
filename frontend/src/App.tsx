@@ -4,7 +4,7 @@ import { Toaster } from 'react-hot-toast'
 
 import { AppLayout } from './components/layout/AppLayout'
 import { AuthLayout } from './components/auth/AuthLayout'
-import { Landing } from './pages/Landing'
+import { FeaturesPage, Landing, PricingPage, SetupPage } from './pages/Landing'
 import { Login } from './pages/auth/Login'
 import { Signup } from './pages/auth/Signup'
 import { Overview } from './pages/app/Overview'
@@ -44,6 +44,9 @@ export function App() {
         <Routes>
           <Route path="/" element={<Landing />} />
           <Route path="/landing" element={<Landing />} />
+          <Route path="/features" element={<FeaturesPage />} />
+          <Route path="/setup" element={<SetupPage />} />
+          <Route path="/pricing" element={<PricingPage />} />
           <Route element={<AuthLayout />}>
             <Route path="/auth/login" element={<Login />} />
             <Route path="/auth/signup" element={<Signup />} />
