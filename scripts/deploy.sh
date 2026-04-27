@@ -1,9 +1,6 @@
-#!/usr/bin/env bash
-set -euo pipefail
-
-ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
-cd "$ROOT"
-
+#!/bin/bash
+set -e
+echo "Deploying ClawDesk..."
 docker compose build
 docker compose up -d
-curl -fsS http://localhost:3001/api/health
+echo "Done. Visit http://$(curl -s ifconfig.me)"

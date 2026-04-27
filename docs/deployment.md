@@ -1,11 +1,23 @@
 # Deployment
 
-Build and run ClawDesk with Docker Compose:
+## Docker (recommended)
 
 ```bash
 cp .env.example .env
-docker compose build
+# Set OPENCLAW_JWT_SECRET
 docker compose up -d
 ```
 
-The backend container needs `openssh-client` because agent lifecycle actions run over SSH. Store the SQLite database on a persistent volume in production.
+## Manual VPS
+
+```bash
+# On your server
+cargo build --release
+cd frontend && npm run build
+# Serve frontend with nginx, proxy /api and /ws to backend
+OPENCLAW_JWT_SECRET=your-secret ./target/release/clawdesk
+```
+
+## Environment
+
+Set `CLAWDESK_PUBLIC_URL` to your domain for OAuth callbacks to work.

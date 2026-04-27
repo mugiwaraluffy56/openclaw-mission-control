@@ -1,25 +1,36 @@
 # Getting Started
 
-Run ClawDesk locally:
+## Prerequisites
+- Rust 1.80+
+- Node.js 22+
+- An OpenClaw instance running on a VPS
+
+## Install
 
 ```bash
-cd ~/Desktop/openclaw-mission-control
-cd frontend && npm install
-cd ..
+git clone https://github.com/mugiwaraluffy56/openclaw-mission-control
+cd openclaw-mission-control
+cp .env.example .env
+# Fill in OPENCLAW_JWT_SECRET at minimum
 ./start.sh
 ```
 
-Frontend: http://localhost:5173
+Open http://localhost:5173, sign up, then click **Link Agent**.
 
-Backend: http://localhost:3001
+## Adding Your First Agent
 
-Agents connect with a hostname or IP address, an SSH credential, and the OpenClaw gateway token from the remote host.
+You need three things:
+1. **Server IP** — the public IP of the server running OpenClaw
+2. **SSH Key** — paste the contents of your `.pem` or private key file
+3. **Gateway Token** — found in `~/.openclaw/openclaw.json` → `gateway.auth.token`
 
-## OAuth
+## Environment Variables
 
-Google and GitHub login require provider apps with callback URLs:
-
-- `http://localhost:3001/api/auth/google/callback`
-- `http://localhost:3001/api/auth/github/callback`
-
-Set `GOOGLE_CLIENT_ID`, `GOOGLE_CLIENT_SECRET`, `GITHUB_CLIENT_ID`, `GITHUB_CLIENT_SECRET`, `BACKEND_PUBLIC_URL`, and `FRONTEND_ORIGIN` before starting the backend.
+| Variable | Required | Description |
+|---|---|---|
+| `OPENCLAW_JWT_SECRET` | Yes | Secret for signing JWTs (min 32 chars) |
+| `GOOGLE_CLIENT_ID` | OAuth | Google OAuth app client ID |
+| `GOOGLE_CLIENT_SECRET` | OAuth | Google OAuth app client secret |
+| `GITHUB_CLIENT_ID` | OAuth | GitHub OAuth app client ID |
+| `GITHUB_CLIENT_SECRET` | OAuth | GitHub OAuth app client secret |
+| `CLAWDESK_PUBLIC_URL` | OAuth | Public URL of the backend (for OAuth redirects) |

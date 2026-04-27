@@ -1,8 +1,6 @@
-#!/usr/bin/env bash
-set -euo pipefail
-
-DB="${MISSION_CONTROL_DB:-backend/mission_control.db}"
-sqlite3 "$DB" <<'SQL'
-INSERT OR IGNORE INTO users (id, email, name, password_hash)
-VALUES ('seed-user', 'admin@clawdesk.local', 'ClawDesk Admin', NULL);
-SQL
+#!/bin/bash
+# Seed a demo user for development
+curl -s -X POST http://localhost:3001/api/auth/signup \
+  -H "Content-Type: application/json" \
+  -d '{"email":"demo@clawdesk.io","password":"demo1234","name":"Demo User"}' | jq .
+echo "Demo user: demo@clawdesk.io / demo1234"

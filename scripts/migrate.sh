@@ -1,8 +1,3 @@
-#!/usr/bin/env bash
-set -euo pipefail
-
-DB="${MISSION_CONTROL_DB:-backend/mission_control.db}"
-for migration in migrations/*.sql; do
-  echo "Applying ${migration}"
-  sqlite3 "$DB" < "$migration"
-done
+#!/bin/bash
+# Migrations are run automatically on startup via rusqlite schema.rs
+echo "Schema migrations run automatically on backend start."

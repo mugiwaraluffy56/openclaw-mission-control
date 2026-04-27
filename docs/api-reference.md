@@ -1,36 +1,41 @@
 # API Reference
 
-All API routes live under `/api`. Authenticated routes require `Authorization: Bearer <jwt>`.
+Base URL: `http://localhost:3001/api`
 
-- `GET /api/health`
-- `POST /api/auth/signup`
-- `POST /api/auth/login`
-- `GET /api/auth/google`
-- `GET /api/auth/google/callback`
-- `GET /api/auth/github`
-- `GET /api/auth/github/callback`
-- `GET /api/auth/me`
-- `GET /api/agents`
-- `POST /api/agents`
-- `GET /api/agents/:id`
-- `PUT /api/agents/:id`
-- `DELETE /api/agents/:id`
-- `POST /api/agents/:id/start`
-- `POST /api/agents/:id/stop`
-- `POST /api/agents/:id/restart`
-- `POST /api/agents/:id/command`
-- `GET /api/agents/:id/config`
-- `PUT /api/agents/:id/config`
-- `GET /api/agents/:id/channels`
-- `GET /api/agents/:id/plugins`
-- `GET /api/agents/:id/sessions`
-- `GET /api/agents/:id/stats`
-- `GET /api/activity`
-- `GET /api/webhooks`
-- `POST /api/webhooks`
-- `DELETE /api/webhooks/:id`
-- `GET /api/notifications`
-- `POST /api/notifications`
-- `GET /api/team`
-- `POST /api/team/invite`
-- `GET /ws/logs/:id?token=<jwt>`
+## Auth
+
+| Method | Path | Description |
+|---|---|---|
+| POST | `/auth/signup` | Create account |
+| POST | `/auth/login` | Sign in |
+| GET | `/auth/me` | Current user |
+| GET | `/auth/google` | Start Google OAuth |
+| GET | `/auth/github` | Start GitHub OAuth |
+
+## Agents
+
+All endpoints require `Authorization: Bearer <token>`.
+
+| Method | Path | Description |
+|---|---|---|
+| GET | `/agents` | List all agents with live status |
+| POST | `/agents` | Link a new agent |
+| GET | `/agents/:id` | Get agent detail |
+| PUT | `/agents/:id` | Update agent metadata |
+| DELETE | `/agents/:id` | Remove agent |
+| POST | `/agents/:id/restart` | Restart gateway |
+| POST | `/agents/:id/stop` | Stop gateway |
+| POST | `/agents/:id/start` | Start gateway |
+| GET | `/agents/:id/config` | Read openclaw.json |
+| PUT | `/agents/:id/config` | Write openclaw.json + restart |
+| GET | `/agents/:id/sessions` | Active sessions |
+| GET | `/agents/:id/stats` | CPU/memory/uptime |
+| POST | `/agents/:id/command` | Run SSH command |
+| GET | `/agents/:id/channels` | Channel config |
+| GET | `/agents/:id/plugins` | Installed plugins |
+
+## WebSocket
+
+`ws://localhost:3001/ws/logs/:agentId?token=<jwt>`
+
+Streams live journalctl output for the agent's gateway service.
