@@ -5,7 +5,7 @@ const STEPS = [
     num: '01',
     icon: Upload,
     title: 'Upload your SSH key',
-    desc: 'Paste your SSH private key and enter your server IP. We encrypt it immediately using AES-256. Your key never leaves our servers unencrypted.',
+    desc: 'Upload or paste your SSH private key and enter your server IP. Run Mission Control on storage you control and keep key material out of API responses.',
     code: '$ openclaw gateway start --port 3284',
   },
   {

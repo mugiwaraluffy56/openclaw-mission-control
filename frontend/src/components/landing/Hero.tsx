@@ -91,7 +91,7 @@ export function Hero() {
           <div className="flex items-center gap-6 text-xs text-zinc-600">
             <span className="flex items-center gap-1.5"><span className="w-1.5 h-1.5 rounded-full bg-green-500" /> No credit card</span>
             <span className="flex items-center gap-1.5"><span className="w-1.5 h-1.5 rounded-full bg-green-500" /> Deploy in 60s</span>
-            <span className="flex items-center gap-1.5"><span className="w-1.5 h-1.5 rounded-full bg-green-500" /> SSH key encrypted</span>
+            <span className="flex items-center gap-1.5"><span className="w-1.5 h-1.5 rounded-full bg-green-500" /> Self-host friendly</span>
           </div>
         </div>
 

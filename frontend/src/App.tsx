@@ -4,6 +4,7 @@ import { Toaster } from 'react-hot-toast'
 
 import { AppLayout } from './components/layout/AppLayout'
 import { AuthLayout } from './components/auth/AuthLayout'
+import { Landing } from './pages/Landing'
 import { Login } from './pages/auth/Login'
 import { Signup } from './pages/auth/Signup'
 import { Overview } from './pages/app/Overview'
@@ -41,7 +42,8 @@ export function App() {
     <QueryClientProvider client={qc}>
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<Navigate to="/app" replace />} />
+          <Route path="/" element={<Landing />} />
+          <Route path="/landing" element={<Landing />} />
           <Route element={<AuthLayout />}>
             <Route path="/auth/login" element={<Login />} />
             <Route path="/auth/signup" element={<Signup />} />
