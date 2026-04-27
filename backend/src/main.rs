@@ -42,6 +42,6 @@ async fn main() {
         .with_state(pool);
 
     let listener = tokio::net::TcpListener::bind("0.0.0.0:3001").await.unwrap();
-    println!("Mission Control API: http://0.0.0.0:3001");
+    println!("ClawDesk API: http://0.0.0.0:3001");
     axum::serve(listener, app).await.unwrap();
 }

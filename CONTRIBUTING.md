@@ -1,6 +1,6 @@
 # Contributing
 
-OpenClaw Mission Control is a Rust Axum API plus a Vite React dashboard.
+ClawDesk is a Rust Axum API plus a Vite React dashboard.
 
 ## Local setup
 

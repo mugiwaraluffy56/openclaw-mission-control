@@ -318,7 +318,7 @@ function SettingsPage({ title, icon, fields, extra }: { title: string; icon: Rea
           <div className="flex items-center gap-2 text-sm text-white">{icon}{title}</div>
           {fields.map((field) => <Input key={field} label={field} placeholder={field} />)}
         </div>
-        <div>{extra ?? <div className="bg-surface-1 border border-border-1 rounded-lg p-3 text-xs text-zinc-500">Preferences are saved to the workspace profile and applied across Mission Control.</div>}</div>
+        <div>{extra ?? <div className="bg-surface-1 border border-border-1 rounded-lg p-3 text-xs text-zinc-500">Preferences are saved to the workspace profile and applied across ClawDesk.</div>}</div>
       </div>
     </PageShell>
   )

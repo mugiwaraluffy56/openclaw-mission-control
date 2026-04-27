@@ -3,7 +3,7 @@ export type RequestOptions = {
   token?: string
 }
 
-export class OpenClawMissionControl {
+export class ClawDesk {
   private baseUrl: string
   private token?: string
 

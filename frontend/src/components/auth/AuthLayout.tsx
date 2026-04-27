@@ -13,8 +13,7 @@ export function AuthLayout() {
           <div className="w-8 h-8 rounded-lg flex items-center justify-center" style={{ backgroundImage: 'linear-gradient(to top, #ff0844 0%, #ffb199 100%)' }}>
             <Zap size={15} className="text-white" />
           </div>
-          <span className="font-bold text-white text-sm">OpenClaw</span>
-          <span className="text-zinc-600 text-sm">Mission Control</span>
+          <span className="font-bold text-white text-sm">ClawDesk</span>
         </div>
         <div className="flex-1">
           <h2 className="text-2xl font-bold text-white mb-3 leading-tight">
@@ -51,7 +50,7 @@ export function AuthLayout() {
             <div className="w-7 h-7 rounded-lg flex items-center justify-center" style={{ backgroundImage: 'linear-gradient(to top, #ff0844 0%, #ffb199 100%)' }}>
               <Zap size={13} className="text-white" />
             </div>
-            <span className="font-bold text-white text-sm">Mission Control</span>
+            <span className="font-bold text-white text-sm">ClawDesk</span>
           </div>
           <Outlet />
         </div>

@@ -30,7 +30,7 @@ interface Props {
 export function Header({ onCommandOpen }: Props) {
   const { pathname } = useLocation()
   const { user } = useAuthStore()
-  const page = titles[pathname] ?? { title: 'Mission Control', desc: '' }
+  const page = titles[pathname] ?? { title: 'ClawDesk', desc: '' }
 
   return (
     <header className="h-12 flex items-center gap-4 px-5 border-b border-border-1 bg-surface-1 flex-shrink-0">

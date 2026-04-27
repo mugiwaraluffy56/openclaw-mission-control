@@ -2,7 +2,7 @@
 
 # Development
 dev:
-	@echo "Starting Mission Control in development mode..."
+	@echo "Starting ClawDesk in development mode..."
 	@./start.sh
 
 # Build

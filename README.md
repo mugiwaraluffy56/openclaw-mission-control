@@ -1,10 +1,10 @@
-# OpenClaw Mission Control
+# ClawDesk
 
 A production-grade, multi-tenant SaaS dashboard for managing OpenClaw AI agent instances across any infrastructure — cloud, VPS, bare metal.
 
 ## Overview
 
-Mission Control lets teams monitor, control, and collaborate on OpenClaw agent deployments from a single unified interface. Connect any OpenClaw instance, manage multiple agents, stream live logs, run commands, and track activity — all with role-based access control.
+ClawDesk lets teams monitor, control, and collaborate on OpenClaw agent deployments from a single unified interface. Connect any OpenClaw instance, manage multiple agents, stream live logs, run commands, and track activity — all with role-based access control.
 
 ## Features
 
@@ -69,7 +69,7 @@ Open [http://localhost:5173](http://localhost:5173) — sign up, add your first 
 ## Project Structure
 
 ```
-openclaw-mission-control/
+clawdesk/
 ├── backend/          Rust + Axum API server
 ├── frontend/         React + Vite dashboard
 ├── docs/             Documentation and guides
@@ -77,7 +77,7 @@ openclaw-mission-control/
 ├── infra/            Infrastructure as code (Terraform, Docker)
 ├── packages/         Shared packages and utilities
 ├── migrations/       Database migration files
-├── sdk/              Mission Control API SDK (TypeScript)
+├── sdk/              ClawDesk API SDK (TypeScript)
 ├── tests/            End-to-end tests
 └── .github/          CI/CD workflows
 ```

@@ -27,7 +27,7 @@ export function Login() {
   return (
     <div className="animate-fade-in">
       <h1 className="text-xl font-bold text-white mb-1">Welcome back</h1>
-      <p className="text-sm text-zinc-500 mb-7">Sign in to your Mission Control account</p>
+      <p className="text-sm text-zinc-500 mb-7">Sign in to your ClawDesk account</p>
 
       <form onSubmit={(e) => { e.preventDefault(); login.mutate() }} className="space-y-4">
         <Input

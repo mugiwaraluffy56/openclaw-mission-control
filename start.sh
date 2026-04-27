@@ -9,7 +9,7 @@ cargo build --release 2>&1
 echo ""
 echo "Starting backend on :3001..."
 OPENCLAW_JWT_SECRET="${OPENCLAW_JWT_SECRET:-$(openssl rand -hex 32)}" \
-  ./target/release/openclaw-mission-control &
+  ./target/release/clawdesk &
 BACKEND_PID=$!
 
 echo "Starting frontend on :5173..."

@@ -1,6 +1,6 @@
 # Deployment
 
-Build and run with Docker Compose:
+Build and run ClawDesk with Docker Compose:
 
 ```bash
 cp .env.example .env

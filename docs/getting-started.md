@@ -1,6 +1,6 @@
 # Getting Started
 
-Run Mission Control locally:
+Run ClawDesk locally:
 
 ```bash
 cd ~/Desktop/openclaw-mission-control

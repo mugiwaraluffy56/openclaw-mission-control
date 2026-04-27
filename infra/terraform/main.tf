@@ -12,7 +12,7 @@ provider "docker" {}
 
 variable "project_name" {
   type    = string
-  default = "openclaw-mission-control"
+  default = "clawdesk"
 }
 
 resource "docker_network" "mission_control" {

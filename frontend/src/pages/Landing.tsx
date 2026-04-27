@@ -15,7 +15,7 @@ export function Landing() {
             <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-violet-600 text-white">
               <Zap size={15} />
             </span>
-            <span className="text-sm font-semibold">OpenClaw Mission Control</span>
+            <span className="text-sm font-semibold">ClawDesk</span>
           </Link>
           <nav className="hidden items-center gap-5 text-xs text-zinc-500 md:flex">
             <a href="#features" className="hover:text-white">Features</a>
@@ -41,7 +41,7 @@ export function Landing() {
       </main>
       <footer className="border-t border-border-1 px-6 py-8">
         <div className="mx-auto flex max-w-6xl flex-col gap-3 text-xs text-zinc-600 md:flex-row md:items-center md:justify-between">
-          <span>OpenClaw Mission Control</span>
+          <span>ClawDesk</span>
           <div className="flex gap-4">
             <Link to="/app" className="hover:text-zinc-300">Dashboard</Link>
             <Link to="/auth/login" className="hover:text-zinc-300">Login</Link>

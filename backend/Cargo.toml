@@ -1,10 +1,10 @@
 [package]
-name = "openclaw-mission-control"
+name = "clawdesk"
 version = "0.1.0"
 edition = "2021"
 
 [[bin]]
-name = "openclaw-mission-control"
+name = "clawdesk"
 path = "src/main.rs"
 
 [dependencies]
