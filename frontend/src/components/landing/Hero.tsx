@@ -57,7 +57,7 @@ export function Hero() {
         <div className="space-y-7">
           <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-violet-500/10 border border-violet-500/20 rounded-full text-xs text-violet-300">
             <span className="w-1.5 h-1.5 rounded-full bg-violet-400 animate-pulse" />
-            Now in public beta — free to start
+            Now in public beta. Free to start.
           </div>
 
           <div className="space-y-3">
@@ -69,7 +69,7 @@ export function Hero() {
               </span>
             </h1>
             <p className="text-base text-zinc-400 leading-relaxed max-w-md">
-              One dashboard to monitor, manage, and control every OpenClaw instance running on any server. Real-time logs, SSH control, config editor, team access — all in one place.
+              One dashboard to monitor, manage, and control every OpenClaw instance running on any server. Real-time logs, SSH control, config editor, and team access in one place.
             </p>
           </div>
 
@@ -95,7 +95,7 @@ export function Hero() {
           </div>
         </div>
 
-        {/* Right — Terminal */}
+        {/* Right: Terminal */}
         <div className="relative">
           <div className="absolute -inset-1 rounded-2xl opacity-30 blur-xl" style={{ backgroundImage: 'linear-gradient(to top, #ff0844 0%, #ffb199 100%)' }} />
           <div className="relative bg-surface-1 border border-border-2 rounded-xl overflow-hidden shadow-2xl">

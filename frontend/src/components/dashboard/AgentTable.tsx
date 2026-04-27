@@ -64,10 +64,10 @@ export function AgentTable({ agents }: Props) {
                   <span className="text-2xs font-mono text-zinc-500">{a.ip}</span>
                 </td>
                 <td className="px-3 py-2.5">
-                  <span className="text-2xs font-mono text-zinc-600">{a.pid ?? '—'}</span>
+                  <span className="text-2xs font-mono text-zinc-600">{a.pid ?? 'N/A'}</span>
                 </td>
                 <td className="px-3 py-2.5">
-                  <span className="text-2xs font-mono text-zinc-500">{a.uptime ?? '—'}</span>
+                  <span className="text-2xs font-mono text-zinc-500">{a.uptime ?? 'N/A'}</span>
                 </td>
                 <td className="px-3 py-2.5">
                   <span className="text-2xs text-zinc-600 whitespace-nowrap">

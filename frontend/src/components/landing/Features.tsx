@@ -34,7 +34,7 @@ const FEATURES = [
   {
     icon: BarChart2,
     title: 'Analytics & metrics',
-    desc: 'Message volume, model usage breakdown, session counts, and fleet health metrics — all with time-series charts.',
+    desc: 'Message volume, model usage breakdown, session counts, and fleet health metrics with time-series charts.',
     color: 'blue',
   },
   {

@@ -143,9 +143,9 @@ export function AgentDetail() {
               {stats ? (
                 <div className="space-y-3">
                   {[
-                    { label: 'CPU Usage', value: stats.cpu ? `${stats.cpu}%` : '—' },
-                    { label: 'Memory', value: stats.memory ? `${stats.memory}%` : '—' },
-                    { label: 'Uptime', value: stats.uptime || '—' },
+                    { label: 'CPU Usage', value: stats.cpu ? `${stats.cpu}%` : 'N/A' },
+                    { label: 'Memory', value: stats.memory ? `${stats.memory}%` : 'N/A' },
+                    { label: 'Uptime', value: stats.uptime || 'N/A' },
                   ].map(({ label, value }) => (
                     <div key={label} className="flex justify-between items-center">
                       <span className="text-xs text-zinc-600">{label}</span>
@@ -196,7 +196,7 @@ export function AgentDetail() {
               <>
                 {configDirty && (
                   <div className="flex items-center justify-between px-4 py-2.5 bg-amber-500/5 border border-amber-500/20 rounded-lg">
-                    <p className="text-xs text-amber-400">Unsaved changes — will restart gateway</p>
+                    <p className="text-xs text-amber-400">Unsaved changes. Saving will restart gateway.</p>
                     <Button variant="primary" size="sm" onClick={() => saveConfig.mutate()} loading={saveConfig.isPending}>
                       <Save size={12} /> Save & Restart
                     </Button>

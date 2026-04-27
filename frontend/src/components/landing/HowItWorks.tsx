@@ -19,7 +19,7 @@ const STEPS = [
     num: '03',
     icon: BarChart2,
     title: 'Monitor & control',
-    desc: 'View live logs, restart agents, edit configs, run SSH commands, manage your team — all from one dense, information-packed dashboard.',
+    desc: 'View live logs, restart agents, edit configs, run SSH commands, and manage your team from one dense, information-packed dashboard.',
     code: '[OK] agent "prod-01" connected · uptime 4d 12h',
   },
 ]

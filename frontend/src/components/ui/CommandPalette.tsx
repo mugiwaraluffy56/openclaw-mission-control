@@ -44,16 +44,16 @@ export function CommandPalette({ open, onClose }: Props) {
     { id: 'channels', label: 'Go to Channels', icon: <Zap size={14} />, action: () => nav('/app/channels'), group: 'Navigate' },
     { id: 'sessions', label: 'Go to Sessions', icon: <Users size={14} />, action: () => nav('/app/sessions'), group: 'Navigate' },
     { id: 'status', label: 'Go to Status Page', icon: <Globe size={14} />, action: () => nav('/app/status'), group: 'Navigate' },
-    { id: 'settings-profile', label: 'Settings — Profile', icon: <Settings size={14} />, action: () => nav('/app/settings/profile'), group: 'Settings' },
-    { id: 'settings-security', label: 'Settings — Security', icon: <Settings size={14} />, action: () => nav('/app/settings/security'), group: 'Settings' },
-    { id: 'settings-api-keys', label: 'Settings — API Keys', icon: <Key size={14} />, action: () => nav('/app/settings/api-keys'), group: 'Settings' },
-    { id: 'settings-billing', label: 'Settings — Billing', icon: <CreditCard size={14} />, action: () => nav('/app/settings/billing'), group: 'Settings' },
-    { id: 'settings-notifications', label: 'Settings — Notifications', icon: <Bell size={14} />, action: () => nav('/app/settings/notifications'), group: 'Settings' },
+    { id: 'settings-profile', label: 'Settings: Profile', icon: <Settings size={14} />, action: () => nav('/app/settings/profile'), group: 'Settings' },
+    { id: 'settings-security', label: 'Settings: Security', icon: <Settings size={14} />, action: () => nav('/app/settings/security'), group: 'Settings' },
+    { id: 'settings-api-keys', label: 'Settings: API Keys', icon: <Key size={14} />, action: () => nav('/app/settings/api-keys'), group: 'Settings' },
+    { id: 'settings-billing', label: 'Settings: Billing', icon: <CreditCard size={14} />, action: () => nav('/app/settings/billing'), group: 'Settings' },
+    { id: 'settings-notifications', label: 'Settings: Notifications', icon: <Bell size={14} />, action: () => nav('/app/settings/notifications'), group: 'Settings' },
   ]
 
   const agentCommands: CommandItem[] = (agents ?? []).flatMap((a) => [
     { id: `agent-view-${a.id}`, label: `View ${a.name}`, sub: a.ip, icon: <Bot size={14} />, action: () => nav(`/app/agents/${a.id}`), group: 'Agents', keywords: [a.ip, a.model] },
-    { id: `agent-logs-${a.id}`, label: `Logs — ${a.name}`, sub: 'Open log stream', icon: <ScrollText size={14} />, action: () => nav('/app/logs'), group: 'Agent Actions', keywords: [a.ip] },
+    { id: `agent-logs-${a.id}`, label: `Logs: ${a.name}`, sub: 'Open log stream', icon: <ScrollText size={14} />, action: () => nav('/app/logs'), group: 'Agent Actions', keywords: [a.ip] },
     { id: `agent-restart-${a.id}`, label: `Restart ${a.name}`, sub: a.ip, icon: <RefreshCw size={14} />, action: () => { api.agents.restart(a.id); onClose() }, group: 'Agent Actions', keywords: [a.ip] },
     { id: `agent-stop-${a.id}`, label: `Stop ${a.name}`, sub: a.ip, icon: <Square size={14} />, action: () => { api.agents.stop(a.id); onClose() }, group: 'Agent Actions', keywords: [a.ip] },
     { id: `agent-start-${a.id}`, label: `Start ${a.name}`, sub: a.ip, icon: <Play size={14} />, action: () => { api.agents.start(a.id); onClose() }, group: 'Agent Actions', keywords: [a.ip] },

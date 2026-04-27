@@ -37,7 +37,7 @@ export function Header({ onCommandOpen }: Props) {
       <div className="flex-1">
         <div className="flex items-center gap-2">
           <h1 className="text-sm font-semibold text-white">{page.title}</h1>
-          {page.desc && <span className="text-zinc-600 text-xs hidden sm:block">— {page.desc}</span>}
+          {page.desc && <span className="text-zinc-600 text-xs hidden sm:block">- {page.desc}</span>}
         </div>
       </div>
       <div className="flex items-center gap-2">
