@@ -1,7 +1,7 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query'
-import { ArrowLeft, RefreshCw, Square, Play, Trash2, Bot, Settings, ScrollText, Users, BarChart2, Save } from 'lucide-react'
+import { ArrowLeft, RefreshCw, Square, Play, Trash2, Bot, Settings, ScrollText, Users, BarChart2, Save, Terminal, Radio } from 'lucide-react'
 import toast from 'react-hot-toast'
 import { api } from '../../lib/api'
 import { Button } from '../../components/ui/Button'
@@ -17,6 +17,9 @@ const TABS = [
   { id: 'logs', label: 'Live Logs', icon: <ScrollText size={12} /> },
   { id: 'config', label: 'Config', icon: <Settings size={12} /> },
   { id: 'sessions', label: 'Sessions', icon: <Users size={12} /> },
+  { id: 'commands', label: 'Commands', icon: <Terminal size={12} /> },
+  { id: 'channels', label: 'Channels', icon: <Radio size={12} /> },
+  { id: 'settings', label: 'Settings', icon: <Settings size={12} /> },
 ]
 
 export function AgentDetail() {
@@ -26,6 +29,7 @@ export function AgentDetail() {
   const [tab, setTab] = useState('overview')
   const [configText, setConfigText] = useState('')
   const [configDirty, setConfigDirty] = useState(false)
+  const [command, setCommand] = useState('systemctl --user status openclaw-gateway.service --no-pager')
 
   const { data: agent, isLoading } = useQuery({
     queryKey: ['agent', id],
@@ -38,8 +42,11 @@ export function AgentDetail() {
     queryKey: ['config', id],
     queryFn: () => api.agents.getConfig(id!),
     enabled: tab === 'config' && !!id,
-    onSuccess: (d) => { setConfigText(JSON.stringify(d, null, 2)); setConfigDirty(false) },
   })
+
+  useEffect(() => {
+    if (config && !configDirty) setConfigText(JSON.stringify(config, null, 2))
+  }, [config, configDirty])
 
   const { data: sessions } = useQuery({
     queryKey: ['sessions', id],
@@ -55,6 +62,12 @@ export function AgentDetail() {
     refetchInterval: 30000,
   })
 
+  const { data: channels } = useQuery({
+    queryKey: ['channels', id],
+    queryFn: () => api.agents.getChannels(id!),
+    enabled: tab === 'channels' && !!id,
+  })
+
   const invalidate = () => { qc.invalidateQueries({ queryKey: ['agent', id] }); qc.invalidateQueries({ queryKey: ['agents'] }) }
   const restart = useMutation({ mutationFn: () => api.agents.restart(id!), onSuccess: () => { toast.success('Restarted'); invalidate() } })
   const stop = useMutation({ mutationFn: () => api.agents.stop(id!), onSuccess: () => { toast.success('Stopped'); invalidate() } })
@@ -64,6 +77,10 @@ export function AgentDetail() {
     mutationFn: () => api.agents.updateConfig(id!, JSON.parse(configText)),
     onSuccess: () => { toast.success('Config saved & gateway restarted'); setConfigDirty(false) },
     onError: () => toast.error('Invalid JSON or save failed'),
+  })
+  const runCommand = useMutation({
+    mutationFn: () => api.agents.runCommand(id!, command),
+    onError: () => toast.error('Command failed to run'),
   })
 
   if (isLoading) return <div className="flex justify-center py-16"><Spinner /></div>
@@ -206,6 +223,28 @@ export function AgentDetail() {
                 <p className="text-xs font-mono text-zinc-400">{key}</p>
               </div>
             ))}
+          </div>
+        )}
+
+        {tab === 'commands' && (
+          <div className="grid grid-cols-1 xl:grid-cols-[420px,1fr] gap-4">
+            <Card className="p-4 space-y-3">
+              <h3 className="text-xs font-semibold text-zinc-500 uppercase tracking-wider">Run command</h3>
+              <textarea value={command} onChange={(e) => setCommand(e.target.value)} className="w-full h-32 bg-surface-2 border border-border-1 rounded-lg p-3 text-xs font-mono text-white outline-none" />
+              <Button variant="primary" size="sm" onClick={() => runCommand.mutate()} loading={runCommand.isPending}><Terminal size={12} /> Execute</Button>
+            </Card>
+            <pre className="bg-surface-1 border border-border-1 rounded-xl p-4 text-xs font-mono text-zinc-300 overflow-auto min-h-[320px] whitespace-pre-wrap">{runCommand.data ? `$ ${command}\n\n${runCommand.data.stdout}${runCommand.data.stderr ? `\nERR:\n${runCommand.data.stderr}` : ''}` : 'Command output will appear here.'}</pre>
+          </div>
+        )}
+
+        {tab === 'channels' && (
+          <pre className="bg-surface-1 border border-border-1 rounded-xl p-4 text-xs font-mono text-zinc-300 overflow-auto min-h-[420px]">{JSON.stringify(channels?.channels ?? [], null, 2)}</pre>
+        )}
+
+        {tab === 'settings' && (
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+            <Card className="p-4 space-y-3"><h3 className="text-xs font-semibold text-zinc-500 uppercase tracking-wider">Identity</h3><p className="text-xs text-zinc-500">Agent metadata is edited from the Agents table. SSH keys and gateway tokens are never returned to the browser.</p></Card>
+            <Card className="p-4 space-y-3"><h3 className="text-xs font-semibold text-red-400 uppercase tracking-wider">Danger</h3><Button variant="danger" size="sm" onClick={() => { if (confirm('Remove this agent?')) del.mutate() }}><Trash2 size={12} /> Remove agent</Button></Card>
           </div>
         )}
       </div>

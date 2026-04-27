@@ -1,6 +1,7 @@
 pub mod agents;
 pub mod schema;
 pub mod users;
+pub mod workspace;
 
 use rusqlite::Connection;
 use std::sync::{Arc, Mutex};

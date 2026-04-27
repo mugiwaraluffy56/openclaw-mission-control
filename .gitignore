@@ -2,6 +2,8 @@ backend/target/
 frontend/node_modules/
 frontend/dist/
 *.db
+*.db-shm
+*.db-wal
 *.pem
 .env
 mission_control.db

@@ -1,4 +1,4 @@
-import { AgentStatus, CreateAgentForm, ActivityItem, SystemStats, User } from '../types'
+import { AgentStatus, CreateAgentForm, ActivityItem, SystemStats, User, WebhookConfig, NotificationRule, TeamMember } from '../types'
 
 const BASE = '/api'
 
@@ -42,10 +42,28 @@ export const api = {
       req<{ success: boolean }>(`/agents/${id}/config`, { method: 'PUT', body: JSON.stringify(config) }),
     getSessions: (id: string) => req<Record<string, unknown>>(`/agents/${id}/sessions`),
     getStats: (id: string) => req<SystemStats>(`/agents/${id}/stats`),
+    runCommand: (id: string, command: string) =>
+      req<{ success: boolean; stdout: string; stderr: string }>(`/agents/${id}/command`, { method: 'POST', body: JSON.stringify({ command }) }),
+    getChannels: (id: string) => req<{ channels: unknown }>(`/agents/${id}/channels`),
+    getPlugins: (id: string) => req<{ plugins: unknown[]; source: string }>(`/agents/${id}/plugins`),
   },
   activity: {
     list: () => req<ActivityItem[]>('/activity'),
   },
+  webhooks: {
+    list: () => req<WebhookConfig[]>('/webhooks'),
+    create: (data: Omit<WebhookConfig, 'id'>) => req<WebhookConfig>('/webhooks', { method: 'POST', body: JSON.stringify(data) }),
+    delete: (id: string) => req<{ success: boolean }>(`/webhooks/${id}`, { method: 'DELETE' }),
+  },
+  notifications: {
+    list: () => req<NotificationRule[]>('/notifications'),
+    create: (data: Omit<NotificationRule, 'id'>) => req<NotificationRule>('/notifications', { method: 'POST', body: JSON.stringify(data) }),
+  },
+  team: {
+    list: () => req<TeamMember[]>('/team'),
+    invite: (email: string, role: string) => req<TeamMember>('/team/invite', { method: 'POST', body: JSON.stringify({ email, role }) }),
+  },
+  health: () => req<{ ok: boolean; service: string; version: string }>('/health'),
 }
 
 export function wsLogsUrl(agentId: string): string {

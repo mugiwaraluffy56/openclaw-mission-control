@@ -42,6 +42,7 @@ pub fn find_by_id(conn: &Connection, id: &str) -> rusqlite::Result<Option<User>>
     ).optional()
 }
 
+#[allow(dead_code)]
 pub fn find_by_google_id(conn: &Connection, google_id: &str) -> rusqlite::Result<Option<User>> {
     conn.query_row(
         "SELECT id, email, name, avatar_url, created_at FROM users WHERE google_id = ?1",

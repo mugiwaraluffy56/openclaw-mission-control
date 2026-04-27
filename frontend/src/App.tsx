@@ -12,6 +12,27 @@ import { AgentDetail } from './pages/app/AgentDetail'
 import { Logs } from './pages/app/Logs'
 import { ActivityPage } from './pages/app/Activity'
 import { Settings } from './pages/app/Settings'
+import {
+  Analytics,
+  ApiKeysSettings,
+  Approvals,
+  Boards,
+  Channels,
+  ConfigManager,
+  CreateBoard,
+  InstalledSkills,
+  NotificationSettings,
+  Notifications,
+  Organization,
+  ProfileSettings,
+  SecuritySettings,
+  Sessions,
+  SkillsMarketplace,
+  StatusPage,
+  Team,
+  Webhooks,
+  BillingSettings,
+} from './pages/app/Operations'
 
 const qc = new QueryClient({ defaultOptions: { queries: { retry: 1, staleTime: 5000 } } })
 
@@ -31,7 +52,26 @@ export function App() {
             <Route path="/app/agents/:id" element={<AgentDetail />} />
             <Route path="/app/logs" element={<Logs />} />
             <Route path="/app/activity" element={<ActivityPage />} />
+            <Route path="/app/boards" element={<Boards />} />
+            <Route path="/app/boards/new" element={<CreateBoard />} />
+            <Route path="/app/approvals" element={<Approvals />} />
+            <Route path="/app/team" element={<Team />} />
+            <Route path="/app/skills" element={<SkillsMarketplace />} />
+            <Route path="/app/skills/installed" element={<InstalledSkills />} />
+            <Route path="/app/channels" element={<Channels />} />
+            <Route path="/app/sessions" element={<Sessions />} />
+            <Route path="/app/config" element={<ConfigManager />} />
+            <Route path="/app/analytics" element={<Analytics />} />
+            <Route path="/app/notifications" element={<Notifications />} />
+            <Route path="/app/webhooks" element={<Webhooks />} />
+            <Route path="/app/status" element={<StatusPage />} />
             <Route path="/app/settings" element={<Settings />} />
+            <Route path="/app/settings/profile" element={<ProfileSettings />} />
+            <Route path="/app/settings/security" element={<SecuritySettings />} />
+            <Route path="/app/settings/api-keys" element={<ApiKeysSettings />} />
+            <Route path="/app/settings/billing" element={<BillingSettings />} />
+            <Route path="/app/settings/notifications" element={<NotificationSettings />} />
+            <Route path="/app/organization" element={<Organization />} />
           </Route>
         </Routes>
       </BrowserRouter>

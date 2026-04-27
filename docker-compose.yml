@@ -1,0 +1,37 @@
+version: '3.9'
+
+services:
+  backend:
+    build:
+      context: .
+      dockerfile: infra/docker/Dockerfile.backend
+    ports:
+      - "3001:3001"
+    environment:
+      - OPENCLAW_JWT_SECRET=${OPENCLAW_JWT_SECRET}
+      - OPENCLAW_DB_PATH=/data/mission_control.db
+      - OPENCLAW_ENV=production
+    volumes:
+      - db_data:/data
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:3001/api/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  frontend:
+    build:
+      context: .
+      dockerfile: infra/docker/Dockerfile.frontend
+    ports:
+      - "80:80"
+      - "443:443"
+    depends_on:
+      - backend
+    environment:
+      - VITE_API_URL=http://backend:3001
+    restart: unless-stopped
+
+volumes:
+  db_data:

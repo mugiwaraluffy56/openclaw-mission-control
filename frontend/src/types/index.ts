@@ -43,3 +43,31 @@ export interface SystemStats {
   memory: string
   uptime: string
 }
+
+export interface WebhookConfig {
+  id: string
+  name: string
+  url: string
+  events: string[]
+  secret?: string | null
+  enabled: boolean
+  created_at?: string
+}
+
+export interface NotificationRule {
+  id: string
+  event_type: string
+  destination: string
+  enabled: boolean
+  threshold?: string | null
+  created_at?: string
+}
+
+export interface TeamMember {
+  id: string
+  email: string
+  name: string | null
+  role: string
+  status: string
+  created_at: string
+}

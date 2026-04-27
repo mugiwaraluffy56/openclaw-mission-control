@@ -1,4 +1,5 @@
 use axum::{extract::{Path, State}, http::StatusCode, response::Json, Extension};
+use serde::Deserialize;
 use serde_json::{json, Value};
 use uuid::Uuid;
 
@@ -7,6 +8,11 @@ use crate::{
     models::{agent::{Agent, AgentStatus, CreateAgentRequest, UpdateAgentRequest}, user::User},
     ssh::{client::SshClient, commands},
 };
+
+#[derive(Deserialize)]
+pub struct CommandRequest {
+    pub command: String,
+}
 
 pub async fn list(
     State(pool): State<DbPool>,
@@ -175,6 +181,60 @@ pub async fn get_stats(
     Ok(Json(stats))
 }
 
+pub async fn run_command(
+    State(pool): State<DbPool>,
+    Extension(user): Extension<User>,
+    Path(id): Path<String>,
+    Json(body): Json<CommandRequest>,
+) -> Result<Json<Value>, StatusCode> {
+    let command = body.command.trim();
+    if command.is_empty() || command.len() > 4000 {
+        return Err(StatusCode::BAD_REQUEST);
+    }
+    let agent = get_agent_or_404(&pool, &id, &user.id)?;
+    let client = SshClient::new(&agent.ip, &agent.pem_content).ok_or(StatusCode::INTERNAL_SERVER_ERROR)?;
+    let (success, stdout, stderr) = client.run(command);
+    let conn = pool.lock().map_err(|_| StatusCode::INTERNAL_SERVER_ERROR)?;
+    agents::log_activity(&conn, &Uuid::new_v4().to_string(), &user.id, Some(&id), "command_run", Some(command))
+        .map_err(|_| StatusCode::INTERNAL_SERVER_ERROR)?;
+    Ok(Json(json!({ "success": success, "stdout": stdout, "stderr": stderr })))
+}
+
+pub async fn get_channels(
+    State(pool): State<DbPool>,
+    Extension(user): Extension<User>,
+    Path(id): Path<String>,
+) -> Result<Json<Value>, StatusCode> {
+    let config = read_agent_config(&pool, &id, &user.id)?;
+    let channels = config.get("channels")
+        .or_else(|| config.get("telegram"))
+        .or_else(|| config.get("discord"))
+        .cloned()
+        .unwrap_or(json!([]));
+    Ok(Json(json!({ "channels": channels })))
+}
+
+pub async fn get_plugins(
+    State(pool): State<DbPool>,
+    Extension(user): Extension<User>,
+    Path(id): Path<String>,
+) -> Result<Json<Value>, StatusCode> {
+    let config = read_agent_config(&pool, &id, &user.id).unwrap_or(json!({}));
+    let from_config = config.get("plugins").cloned().unwrap_or(json!([]));
+    if from_config.as_array().map(|a| !a.is_empty()).unwrap_or(false) {
+        return Ok(Json(json!({ "plugins": from_config, "source": "config" })));
+    }
+
+    let agent = get_agent_or_404(&pool, &id, &user.id)?;
+    let client = SshClient::new(&agent.ip, &agent.pem_content).ok_or(StatusCode::INTERNAL_SERVER_ERROR)?;
+    let (_, logs, _) = client.run("journalctl --user -u openclaw-gateway.service -n 300 --no-pager 2>/dev/null | grep -i plugin | tail -50");
+    let plugins: Vec<Value> = logs.lines()
+        .filter(|line| !line.trim().is_empty())
+        .map(|line| json!({ "name": line.trim(), "status": "observed" }))
+        .collect();
+    Ok(Json(json!({ "plugins": plugins, "source": "logs" })))
+}
+
 pub async fn get_activity(
     State(pool): State<DbPool>,
     Extension(user): Extension<User>,
@@ -189,6 +249,13 @@ fn get_agent_or_404(pool: &DbPool, id: &str, user_id: &str) -> Result<Agent, Sta
     agents::find(&conn, id, user_id)
         .map_err(|_| StatusCode::INTERNAL_SERVER_ERROR)?
         .ok_or(StatusCode::NOT_FOUND)
+}
+
+fn read_agent_config(pool: &DbPool, id: &str, user_id: &str) -> Result<Value, StatusCode> {
+    let agent = get_agent_or_404(pool, id, user_id)?;
+    let client = SshClient::new(&agent.ip, &agent.pem_content).ok_or(StatusCode::INTERNAL_SERVER_ERROR)?;
+    let content = client.read_file("/home/ubuntu/.openclaw/openclaw.json").ok_or(StatusCode::BAD_GATEWAY)?;
+    serde_json::from_str(&content).map_err(|_| StatusCode::BAD_GATEWAY)
 }
 
 fn get_agent_status(agent: &Agent) -> AgentStatus {

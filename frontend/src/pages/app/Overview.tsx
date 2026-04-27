@@ -3,13 +3,15 @@ import { useQuery } from '@tanstack/react-query'
 import { Plus, Bot, RefreshCw } from 'lucide-react'
 import { api } from '../../lib/api'
 import { Button } from '../../components/ui/Button'
-import { AgentCard } from '../../components/agents/AgentCard'
 import { StatsRow } from '../../components/dashboard/StatsRow'
 import { ActivityFeed } from '../../components/dashboard/ActivityFeed'
 import { AddAgentModal } from '../../components/agents/AddAgentModal'
 import { EmptyState } from '../../components/ui/EmptyState'
 import { Spinner } from '../../components/ui/Spinner'
 import { useAuthStore } from '../../store/auth'
+import { FleetChart } from '../../components/dashboard/FleetChart'
+import { AgentTable } from '../../components/dashboard/AgentTable'
+import { AlertBanner } from '../../components/dashboard/AlertBanner'
 
 export function Overview() {
   const [addOpen, setAddOpen] = useState(false)
@@ -21,12 +23,12 @@ export function Overview() {
   })
 
   return (
-    <div className="p-5 space-y-5 animate-fade-in">
-      {/* Top bar */}
+    <div className="p-4 space-y-4 animate-fade-in">
       <div className="flex items-center justify-between">
         <div>
-          <h2 className="text-base font-semibold text-white">Good to see you, {user?.name.split(' ')[0]} 👋</h2>
-          <p className="text-xs text-zinc-600 mt-0.5">Here's what's running across your fleet.</p>
+          <div className="text-2xs uppercase tracking-wider text-zinc-600">Fleet Overview</div>
+          <h2 className="text-lg font-semibold text-white">Command Surface</h2>
+          <p className="text-xs text-zinc-600 mt-0.5">Live operating view for {user?.name.split(' ')[0] ?? 'your'} OpenClaw fleet.</p>
         </div>
         <div className="flex items-center gap-2">
           <Button variant="ghost" size="sm" onClick={() => refetch()} loading={isFetching}>
@@ -38,12 +40,15 @@ export function Overview() {
         </div>
       </div>
 
-      {/* Stats */}
+      {agents && <AlertBanner agents={agents} />}
       {agents && <StatsRow agents={agents} />}
 
       <div className="grid grid-cols-1 xl:grid-cols-3 gap-5">
-        {/* Agents grid */}
-        <div className="xl:col-span-2">
+        <div className="xl:col-span-2 space-y-4">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+            <FleetChart title="Agent status" sub="Online and offline fleet count" dataKey={['online', 'offline']} />
+            <FleetChart title="Activity volume" sub="Gateway log and action throughput" type="bar" dataKey="logs" />
+          </div>
           {isLoading ? (
             <div className="flex justify-center py-16"><Spinner /></div>
           ) : !agents?.length ? (
@@ -54,13 +59,10 @@ export function Overview() {
               action={<Button variant="primary" size="sm" onClick={() => setAddOpen(true)}><Plus size={13} /> Link Agent</Button>}
             />
           ) : (
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
-              {agents.map((a) => <AgentCard key={a.id} agent={a} />)}
-            </div>
+            <AgentTable agents={agents} />
           )}
         </div>
 
-        {/* Activity sidebar */}
         <div><ActivityFeed /></div>
       </div>
 

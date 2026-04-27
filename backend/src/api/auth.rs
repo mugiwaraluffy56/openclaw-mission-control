@@ -4,7 +4,7 @@ use uuid::Uuid;
 
 use crate::{
     auth::jwt,
-    db::{self, users, DbPool},
+    db::{users, DbPool},
     models::user::{AuthResponse, LoginRequest, SignupRequest},
 };
 
