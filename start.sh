@@ -8,7 +8,7 @@ cargo build --release 2>&1
 
 echo ""
 echo "Starting backend on :3001..."
-OPENCLAW_JWT_SECRET="${OPENCLAW_JWT_SECRET:-change_this_in_production_$(openssl rand -hex 32)}" \
+OPENCLAW_JWT_SECRET="${OPENCLAW_JWT_SECRET:-$(openssl rand -hex 32)}" \
   ./target/release/openclaw-mission-control &
 BACKEND_PID=$!
 
