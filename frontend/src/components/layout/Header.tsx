@@ -46,7 +46,7 @@ export function Header({ onCommandOpen }: Props) {
           <kbd className="hidden md:block text-2xs bg-surface-3 border border-border-1 px-1 rounded ml-1">⌘K</kbd>
         </Button>
         <Button variant="ghost" size="xs"><Bell size={13} /></Button>
-        <div className="w-6 h-6 rounded-full bg-gradient-to-br from-violet-500 to-blue-500 flex items-center justify-center">
+        <div className="w-6 h-6 rounded-full flex items-center justify-center" style={{ backgroundImage: 'linear-gradient(to top, #ff0844 0%, #ffb199 100%)' }}>
           <span className="text-2xs font-bold text-white">{user?.name[0]?.toUpperCase()}</span>
         </div>
       </div>

@@ -8,7 +8,7 @@ import { Stats } from '../components/landing/Stats'
 
 export function Landing() {
   return (
-    <div className="min-h-screen overflow-x-hidden text-white" style={{ backgroundImage: 'linear-gradient(to top, #ff0844 0%, #ffb199 100%)' }}>
+    <div className="min-h-screen overflow-x-hidden bg-[#080809] text-white">
       <header className="fixed inset-x-0 top-0 z-40 border-b border-white/10 bg-[#080809]/80 backdrop-blur">
         <div className="mx-auto flex h-14 max-w-6xl items-center justify-between px-4">
           <Link to="/" className="flex items-center gap-2">

@@ -64,7 +64,7 @@ export function Hero() {
             <h1 className="text-5xl lg:text-6xl font-black tracking-tight leading-[1.05]">
               <span className="text-white">Control your</span>
               <br />
-              <span className="bg-gradient-to-r from-violet-400 via-purple-400 to-blue-400 bg-clip-text text-transparent">
+              <span className="bg-clip-text text-transparent" style={{ backgroundImage: 'linear-gradient(to top, #ff0844 0%, #ffb199 100%)' }}>
                 AI fleet.
               </span>
             </h1>
@@ -97,7 +97,7 @@ export function Hero() {
 
         {/* Right — Terminal */}
         <div className="relative">
-          <div className="absolute -inset-1 bg-gradient-to-r from-violet-600/20 to-blue-600/20 rounded-2xl blur-xl" />
+          <div className="absolute -inset-1 rounded-2xl opacity-30 blur-xl" style={{ backgroundImage: 'linear-gradient(to top, #ff0844 0%, #ffb199 100%)' }} />
           <div className="relative bg-surface-1 border border-border-2 rounded-xl overflow-hidden shadow-2xl">
             {/* Terminal chrome */}
             <div className="flex items-center gap-2 px-4 py-3 border-b border-border-1 bg-surface-2">

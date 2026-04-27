@@ -38,7 +38,7 @@ export function HowItWorks() {
             return (
               <div key={i} className="relative">
                 {i < STEPS.length - 1 && (
-                  <div className="hidden md:block absolute top-6 left-[calc(100%+1px)] w-8 h-px bg-gradient-to-r from-border-2 to-transparent" />
+                  <div className="hidden md:block absolute top-6 left-[calc(100%+1px)] w-8 h-px opacity-60" style={{ backgroundImage: 'linear-gradient(to top, #ff0844 0%, #ffb199 100%)' }} />
                 )}
                 <div className="space-y-3">
                   <div className="flex items-center gap-3">

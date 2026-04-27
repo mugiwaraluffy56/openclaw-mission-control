@@ -53,7 +53,7 @@ export function Sidebar() {
   return (
     <aside className="w-14 flex flex-col items-center py-3 bg-surface-1 border-r border-border-1 flex-shrink-0">
       <div className="mb-4 mt-1">
-        <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-violet-600 to-blue-600 flex items-center justify-center shadow-lg">
+        <div className="w-8 h-8 rounded-lg flex items-center justify-center shadow-lg" style={{ backgroundImage: 'linear-gradient(to top, #ff0844 0%, #ffb199 100%)' }}>
           <Zap size={14} className="text-white" />
         </div>
       </div>
@@ -94,7 +94,7 @@ export function Sidebar() {
           </button>
         </Tooltip>
         {user && (
-          <div className="w-7 h-7 rounded-full bg-gradient-to-br from-violet-500 to-blue-500 flex items-center justify-center">
+          <div className="w-7 h-7 rounded-full flex items-center justify-center" style={{ backgroundImage: 'linear-gradient(to top, #ff0844 0%, #ffb199 100%)' }}>
             <span className="text-2xs font-bold text-white">{user.name[0]?.toUpperCase()}</span>
           </div>
         )}

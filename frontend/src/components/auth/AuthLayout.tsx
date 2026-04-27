@@ -10,7 +10,7 @@ export function AuthLayout() {
       {/* Left panel */}
       <div className="hidden lg:flex flex-col w-[420px] bg-surface-1 border-r border-border-1 p-10 flex-shrink-0">
         <div className="flex items-center gap-2.5 mb-12">
-          <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-violet-600 to-blue-600 flex items-center justify-center">
+          <div className="w-8 h-8 rounded-lg flex items-center justify-center" style={{ backgroundImage: 'linear-gradient(to top, #ff0844 0%, #ffb199 100%)' }}>
             <Zap size={15} className="text-white" />
           </div>
           <span className="font-bold text-white text-sm">OpenClaw</span>
@@ -48,7 +48,7 @@ export function AuthLayout() {
       <div className="flex-1 flex items-center justify-center p-8">
         <div className="w-full max-w-sm">
           <div className="flex items-center gap-2 mb-8 lg:hidden">
-            <div className="w-7 h-7 rounded-lg bg-gradient-to-br from-violet-600 to-blue-600 flex items-center justify-center">
+            <div className="w-7 h-7 rounded-lg flex items-center justify-center" style={{ backgroundImage: 'linear-gradient(to top, #ff0844 0%, #ffb199 100%)' }}>
               <Zap size={13} className="text-white" />
             </div>
             <span className="font-bold text-white text-sm">Mission Control</span>

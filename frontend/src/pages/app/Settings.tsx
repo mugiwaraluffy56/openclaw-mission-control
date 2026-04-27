@@ -18,7 +18,7 @@ export function Settings() {
         </div>
         <div className="p-5 space-y-4">
           <div className="flex items-center gap-4">
-            <div className="w-12 h-12 rounded-full bg-gradient-to-br from-violet-500 to-blue-500 flex items-center justify-center">
+            <div className="w-12 h-12 rounded-full flex items-center justify-center" style={{ backgroundImage: 'linear-gradient(to top, #ff0844 0%, #ffb199 100%)' }}>
               <span className="text-lg font-bold text-white">{user?.name[0]?.toUpperCase()}</span>
             </div>
             <div>
