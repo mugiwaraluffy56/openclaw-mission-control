@@ -7,3 +7,4 @@ frontend/dist/
 *.pem
 .env
 mission_control.db
+/logo.png
