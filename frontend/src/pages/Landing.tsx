@@ -111,7 +111,7 @@ function OpsMatrix() {
 
 function WorkflowBand() {
   const steps = [
-    ['01', 'Link host', 'Add hostname, SSH key, and gateway token.'],
+    ['01', 'Link host', 'Add hostname, SSH credential, and gateway token.'],
     ['02', 'Verify runtime', 'Read status, PID, uptime, config, and sessions.'],
     ['03', 'Operate safely', 'Use approvals, notifications, and audit history around changes.'],
     ['04', 'Scale out', 'Repeat across VPS, cloud, and bare metal OpenClaw hosts.'],
@@ -174,7 +174,7 @@ function FeatureDeepDive() {
 function RequirementsGrid() {
   const reqs = [
     { icon: Globe, title: 'Any reachable host', copy: 'VPS, cloud instance, homelab server, or bare metal box with SSH access.' },
-    { icon: KeyRound, title: 'SSH private key', copy: 'Uploaded by the user and used server-side for lifecycle commands and file reads.' },
+    { icon: KeyRound, title: 'SSH credential', copy: 'Provided by the user and used server-side for lifecycle commands and file reads.' },
     { icon: Database, title: 'SQLite storage', copy: 'Bundled database for users, agents, teams, webhooks, notifications, and audit history.' },
     { icon: GitBranch, title: 'Deployment path', copy: 'Docker files, migrations, CI workflows, Terraform starter, and shell scripts are included.' },
   ]
@@ -311,7 +311,7 @@ export function SetupPage() {
       <PageIntro
         eyebrow="Setup"
         title="Connect an OpenClaw host in minutes."
-        copy="ClawDesk is built around a general SSH connection flow: hostname, private key, and gateway token. No cloud-specific assumptions."
+        copy="ClawDesk is built around a general SSH connection flow: hostname, SSH credential, and gateway token. No cloud-specific assumptions."
       />
       <HowItWorks />
       <RequirementsGrid />

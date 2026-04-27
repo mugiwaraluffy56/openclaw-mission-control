@@ -7,6 +7,7 @@ import { Input } from '../../components/ui/Input'
 import { Button } from '../../components/ui/Button'
 import { api } from '../../lib/api'
 import { useAuthStore } from '../../store/auth'
+import { OAuthButtons } from '../../components/auth/OAuthButtons'
 
 export function Login() {
   const [email, setEmail] = useState('')
@@ -28,6 +29,14 @@ export function Login() {
     <div className="animate-fade-in">
       <h1 className="text-xl font-bold text-white mb-1">Welcome back</h1>
       <p className="text-sm text-zinc-500 mb-7">Sign in to your ClawDesk account</p>
+
+      <OAuthButtons label="Continue" />
+
+      <div className="my-5 flex items-center gap-3">
+        <div className="h-px flex-1 bg-border-1" />
+        <span className="text-2xs uppercase tracking-wider text-zinc-700">or</span>
+        <div className="h-px flex-1 bg-border-1" />
+      </div>
 
       <form onSubmit={(e) => { e.preventDefault(); login.mutate() }} className="space-y-4">
         <Input

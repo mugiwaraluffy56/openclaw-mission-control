@@ -6,6 +6,7 @@ import { AppLayout } from './components/layout/AppLayout'
 import { AuthLayout } from './components/auth/AuthLayout'
 import { FeaturesPage, Landing, PricingPage, SetupPage } from './pages/Landing'
 import { Login } from './pages/auth/Login'
+import { OAuthCallback } from './pages/auth/OAuthCallback'
 import { Signup } from './pages/auth/Signup'
 import { Overview } from './pages/app/Overview'
 import { Agents } from './pages/app/Agents'
@@ -50,6 +51,7 @@ export function App() {
           <Route element={<AuthLayout />}>
             <Route path="/auth/login" element={<Login />} />
             <Route path="/auth/signup" element={<Signup />} />
+            <Route path="/auth/oauth/callback" element={<OAuthCallback />} />
           </Route>
           <Route element={<AppLayout />}>
             <Route path="/app" element={<Overview />} />

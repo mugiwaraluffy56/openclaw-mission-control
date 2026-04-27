@@ -23,7 +23,7 @@ export interface AgentStatus {
 export interface CreateAgentForm {
   name: string
   ip: string
-  pem_content: string
+  ssh_key_content: string
   gateway_token: string
   model: string
   accent: string

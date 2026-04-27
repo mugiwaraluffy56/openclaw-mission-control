@@ -35,7 +35,7 @@ pub async fn create(
         user_id: user.id.clone(),
         name: body.name,
         ip: body.ip,
-        pem_content: body.pem_content,
+        ssh_key_content: body.ssh_key_content,
         gateway_token: body.gateway_token,
         model: body.model.unwrap_or_else(|| "unknown".to_string()),
         accent: body.accent.unwrap_or_else(|| "rose".to_string()),
@@ -91,7 +91,7 @@ pub async fn restart(
     Path(id): Path<String>,
 ) -> Result<Json<Value>, StatusCode> {
     let agent = get_agent_or_404(&pool, &id, &user.id)?;
-    let client = SshClient::new(&agent.ip, &agent.pem_content).ok_or(StatusCode::INTERNAL_SERVER_ERROR)?;
+    let client = SshClient::new(&agent.ip, &agent.ssh_key_content).ok_or(StatusCode::INTERNAL_SERVER_ERROR)?;
     let ok = commands::restart(&client);
     let conn = pool.lock().map_err(|_| StatusCode::INTERNAL_SERVER_ERROR)?;
     agents::log_activity(&conn, &Uuid::new_v4().to_string(), &user.id, Some(&id), "restart", None)
@@ -105,7 +105,7 @@ pub async fn stop(
     Path(id): Path<String>,
 ) -> Result<Json<Value>, StatusCode> {
     let agent = get_agent_or_404(&pool, &id, &user.id)?;
-    let client = SshClient::new(&agent.ip, &agent.pem_content).ok_or(StatusCode::INTERNAL_SERVER_ERROR)?;
+    let client = SshClient::new(&agent.ip, &agent.ssh_key_content).ok_or(StatusCode::INTERNAL_SERVER_ERROR)?;
     let ok = commands::stop(&client);
     let conn = pool.lock().map_err(|_| StatusCode::INTERNAL_SERVER_ERROR)?;
     agents::log_activity(&conn, &Uuid::new_v4().to_string(), &user.id, Some(&id), "stop", None)
@@ -119,7 +119,7 @@ pub async fn start_agent(
     Path(id): Path<String>,
 ) -> Result<Json<Value>, StatusCode> {
     let agent = get_agent_or_404(&pool, &id, &user.id)?;
-    let client = SshClient::new(&agent.ip, &agent.pem_content).ok_or(StatusCode::INTERNAL_SERVER_ERROR)?;
+    let client = SshClient::new(&agent.ip, &agent.ssh_key_content).ok_or(StatusCode::INTERNAL_SERVER_ERROR)?;
     let ok = commands::start(&client);
     let conn = pool.lock().map_err(|_| StatusCode::INTERNAL_SERVER_ERROR)?;
     agents::log_activity(&conn, &Uuid::new_v4().to_string(), &user.id, Some(&id), "start", None)
@@ -133,7 +133,7 @@ pub async fn get_config(
     Path(id): Path<String>,
 ) -> Result<Json<Value>, StatusCode> {
     let agent = get_agent_or_404(&pool, &id, &user.id)?;
-    let client = SshClient::new(&agent.ip, &agent.pem_content).ok_or(StatusCode::INTERNAL_SERVER_ERROR)?;
+    let client = SshClient::new(&agent.ip, &agent.ssh_key_content).ok_or(StatusCode::INTERNAL_SERVER_ERROR)?;
     let content = client.read_file("/home/ubuntu/.openclaw/openclaw.json").ok_or(StatusCode::BAD_GATEWAY)?;
     let parsed: Value = serde_json::from_str(&content).unwrap_or(json!({}));
     Ok(Json(parsed))
@@ -146,7 +146,7 @@ pub async fn update_config(
     Json(body): Json<Value>,
 ) -> Result<Json<Value>, StatusCode> {
     let agent = get_agent_or_404(&pool, &id, &user.id)?;
-    let client = SshClient::new(&agent.ip, &agent.pem_content).ok_or(StatusCode::INTERNAL_SERVER_ERROR)?;
+    let client = SshClient::new(&agent.ip, &agent.ssh_key_content).ok_or(StatusCode::INTERNAL_SERVER_ERROR)?;
     let content = serde_json::to_string_pretty(&body).map_err(|_| StatusCode::BAD_REQUEST)?;
     let ok = client.write_file("/home/ubuntu/.openclaw/openclaw.json", &content);
     if ok {
@@ -164,7 +164,7 @@ pub async fn get_sessions(
     Path(id): Path<String>,
 ) -> Result<Json<Value>, StatusCode> {
     let agent = get_agent_or_404(&pool, &id, &user.id)?;
-    let client = SshClient::new(&agent.ip, &agent.pem_content).ok_or(StatusCode::INTERNAL_SERVER_ERROR)?;
+    let client = SshClient::new(&agent.ip, &agent.ssh_key_content).ok_or(StatusCode::INTERNAL_SERVER_ERROR)?;
     let content = client.read_file("/home/ubuntu/.openclaw/agents/main/sessions/sessions.json").unwrap_or_else(|| "{}".to_string());
     let parsed: Value = serde_json::from_str(&content).unwrap_or(json!({}));
     Ok(Json(parsed))
@@ -176,7 +176,7 @@ pub async fn get_stats(
     Path(id): Path<String>,
 ) -> Result<Json<Value>, StatusCode> {
     let agent = get_agent_or_404(&pool, &id, &user.id)?;
-    let client = SshClient::new(&agent.ip, &agent.pem_content).ok_or(StatusCode::INTERNAL_SERVER_ERROR)?;
+    let client = SshClient::new(&agent.ip, &agent.ssh_key_content).ok_or(StatusCode::INTERNAL_SERVER_ERROR)?;
     let stats = commands::get_system_stats(&client);
     Ok(Json(stats))
 }
@@ -192,7 +192,7 @@ pub async fn run_command(
         return Err(StatusCode::BAD_REQUEST);
     }
     let agent = get_agent_or_404(&pool, &id, &user.id)?;
-    let client = SshClient::new(&agent.ip, &agent.pem_content).ok_or(StatusCode::INTERNAL_SERVER_ERROR)?;
+    let client = SshClient::new(&agent.ip, &agent.ssh_key_content).ok_or(StatusCode::INTERNAL_SERVER_ERROR)?;
     let (success, stdout, stderr) = client.run(command);
     let conn = pool.lock().map_err(|_| StatusCode::INTERNAL_SERVER_ERROR)?;
     agents::log_activity(&conn, &Uuid::new_v4().to_string(), &user.id, Some(&id), "command_run", Some(command))
@@ -226,7 +226,7 @@ pub async fn get_plugins(
     }
 
     let agent = get_agent_or_404(&pool, &id, &user.id)?;
-    let client = SshClient::new(&agent.ip, &agent.pem_content).ok_or(StatusCode::INTERNAL_SERVER_ERROR)?;
+    let client = SshClient::new(&agent.ip, &agent.ssh_key_content).ok_or(StatusCode::INTERNAL_SERVER_ERROR)?;
     let (_, logs, _) = client.run("journalctl --user -u openclaw-gateway.service -n 300 --no-pager 2>/dev/null | grep -i plugin | tail -50");
     let plugins: Vec<Value> = logs.lines()
         .filter(|line| !line.trim().is_empty())
@@ -253,13 +253,13 @@ fn get_agent_or_404(pool: &DbPool, id: &str, user_id: &str) -> Result<Agent, Sta
 
 fn read_agent_config(pool: &DbPool, id: &str, user_id: &str) -> Result<Value, StatusCode> {
     let agent = get_agent_or_404(pool, id, user_id)?;
-    let client = SshClient::new(&agent.ip, &agent.pem_content).ok_or(StatusCode::INTERNAL_SERVER_ERROR)?;
+    let client = SshClient::new(&agent.ip, &agent.ssh_key_content).ok_or(StatusCode::INTERNAL_SERVER_ERROR)?;
     let content = client.read_file("/home/ubuntu/.openclaw/openclaw.json").ok_or(StatusCode::BAD_GATEWAY)?;
     serde_json::from_str(&content).map_err(|_| StatusCode::BAD_GATEWAY)
 }
 
 fn get_agent_status(agent: &Agent) -> AgentStatus {
-    let client = SshClient::new(&agent.ip, &agent.pem_content);
+    let client = SshClient::new(&agent.ip, &agent.ssh_key_content);
     let (active, pid, uptime, logs) = client.map(|c| {
         let active = commands::is_active(&c);
         let pid = commands::get_pid(&c);

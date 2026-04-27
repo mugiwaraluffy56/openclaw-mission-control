@@ -6,7 +6,15 @@ use axum::{
 };
 use crate::{auth::jwt::verify, db::{users, DbPool}, models::user::User};
 
-const PUBLIC_PATHS: &[&str] = &["/api/auth/signup", "/api/auth/login", "/api/health"];
+const PUBLIC_PATHS: &[&str] = &[
+    "/api/auth/signup",
+    "/api/auth/login",
+    "/api/auth/google",
+    "/api/auth/google/callback",
+    "/api/auth/github",
+    "/api/auth/github/callback",
+    "/api/health",
+];
 
 pub fn make_middleware(pool: DbPool) -> impl Fn(Request, Next) -> std::pin::Pin<Box<dyn std::future::Future<Output = Response> + Send>> + Clone + Send + 'static {
     move |mut req: Request, next: Next| {

@@ -243,7 +243,7 @@ export function AgentDetail() {
 
         {tab === 'settings' && (
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
-            <Card className="p-4 space-y-3"><h3 className="text-xs font-semibold text-zinc-500 uppercase tracking-wider">Identity</h3><p className="text-xs text-zinc-500">Agent metadata is edited from the Agents table. SSH keys and gateway tokens are never returned to the browser.</p></Card>
+            <Card className="p-4 space-y-3"><h3 className="text-xs font-semibold text-zinc-500 uppercase tracking-wider">Identity</h3><p className="text-xs text-zinc-500">Agent metadata is edited from the Agents table. SSH credentials and gateway tokens are never returned to the browser.</p></Card>
             <Card className="p-4 space-y-3"><h3 className="text-xs font-semibold text-red-400 uppercase tracking-wider">Danger</h3><Button variant="danger" size="sm" onClick={() => { if (confirm('Remove this agent?')) del.mutate() }}><Trash2 size={12} /> Remove agent</Button></Card>
           </div>
         )}

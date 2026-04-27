@@ -4,8 +4,8 @@ const STEPS = [
   {
     num: '01',
     icon: Upload,
-    title: 'Upload your SSH key',
-    desc: 'Upload or paste your SSH private key and enter your server IP. Run ClawDesk on storage you control and keep key material out of API responses.',
+    title: 'Add SSH credential',
+    desc: 'Paste the SSH credential and enter your server IP. Run ClawDesk on storage you control and keep credential material out of API responses.',
     code: '$ openclaw gateway start --port 3284',
   },
   {

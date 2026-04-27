@@ -4,26 +4,26 @@ use tempfile::NamedTempFile;
 
 pub struct SshClient {
     pub ip: String,
-    pem_file: NamedTempFile,
+    key_file: NamedTempFile,
 }
 
 impl SshClient {
-    pub fn new(ip: &str, pem_content: &str) -> Option<Self> {
+    pub fn new(ip: &str, ssh_key_content: &str) -> Option<Self> {
         let mut f = tempfile::NamedTempFile::new().ok()?;
-        f.write_all(pem_content.as_bytes()).ok()?;
+        f.write_all(ssh_key_content.as_bytes()).ok()?;
         // Fix permissions
         #[cfg(unix)]
         {
             use std::os::unix::fs::PermissionsExt;
             std::fs::set_permissions(f.path(), std::fs::Permissions::from_mode(0o600)).ok()?;
         }
-        Some(Self { ip: ip.to_string(), pem_file: f })
+        Some(Self { ip: ip.to_string(), key_file: f })
     }
 
     pub fn run(&self, cmd: &str) -> (bool, String, String) {
         let output = Command::new("ssh")
             .args([
-                "-i", self.pem_file.path().to_str().unwrap_or(""),
+                "-i", self.key_file.path().to_str().unwrap_or(""),
                 "-o", "StrictHostKeyChecking=no",
                 "-o", "ConnectTimeout=5",
                 "-o", "BatchMode=yes",
@@ -55,7 +55,7 @@ impl SshClient {
     pub fn spawn_log_stream(&self) -> Option<std::process::Child> {
         Command::new("ssh")
             .args([
-                "-i", self.pem_file.path().to_str().unwrap_or(""),
+                "-i", self.key_file.path().to_str().unwrap_or(""),
                 "-o", "StrictHostKeyChecking=no",
                 "-o", "ConnectTimeout=5",
                 "-o", "BatchMode=yes",

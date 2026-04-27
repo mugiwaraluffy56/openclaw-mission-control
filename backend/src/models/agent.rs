@@ -6,7 +6,7 @@ pub struct Agent {
     pub user_id: String,
     pub name: String,
     pub ip: String,
-    pub pem_content: String,
+    pub ssh_key_content: String,
     pub gateway_token: String,
     pub model: String,
     pub accent: String,
@@ -27,14 +27,14 @@ pub struct AgentStatus {
     pub uptime: Option<String>,
     pub last_log_lines: Vec<String>,
     pub created_at: String,
-    // pem_content and gateway_token are NEVER included in this struct
+    // ssh_key_content and gateway_token are NEVER included in this struct
 }
 
 #[derive(Deserialize)]
 pub struct CreateAgentRequest {
     pub name: String,
     pub ip: String,
-    pub pem_content: String,
+    pub ssh_key_content: String,
     pub gateway_token: String,
     pub model: Option<String>,
     pub accent: Option<String>,

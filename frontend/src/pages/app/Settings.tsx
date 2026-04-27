@@ -41,8 +41,8 @@ export function Settings() {
         <div className="p-5 space-y-4">
           <div className="flex items-center justify-between">
             <div>
-              <p className="text-xs font-medium text-white">PEM Key Encryption</p>
-              <p className="text-2xs text-zinc-600">All private keys are encrypted at rest in the database</p>
+              <p className="text-xs font-medium text-white">Credential Handling</p>
+              <p className="text-2xs text-zinc-600">Credential material is excluded from agent list and detail responses</p>
             </div>
             <Badge variant="green" dot>Active</Badge>
           </div>

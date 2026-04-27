@@ -27,11 +27,11 @@ pub async fn ws_logs(
         .ok_or(StatusCode::NOT_FOUND)?;
     drop(conn);
 
-    Ok(ws.on_upgrade(move |socket| stream_logs(socket, agent.ip, agent.pem_content)))
+    Ok(ws.on_upgrade(move |socket| stream_logs(socket, agent.ip, agent.ssh_key_content)))
 }
 
-async fn stream_logs(mut socket: WebSocket, ip: String, pem_content: String) {
-    let client = match crate::ssh::client::SshClient::new(&ip, &pem_content) {
+async fn stream_logs(mut socket: WebSocket, ip: String, ssh_key_content: String) {
+    let client = match crate::ssh::client::SshClient::new(&ip, &ssh_key_content) {
         Some(c) => c,
         None => return,
     };

@@ -62,7 +62,7 @@ Open [http://localhost:5173](http://localhost:5173), sign up, add your first age
 3. Provide:
    - **Name**: display name for the instance
    - **Server IP**: public IP of the VPS running OpenClaw
-   - **SSH Key**: upload your `.pem` or private key file
+   - **SSH Credential**: paste the SSH credential used to connect to the host
    - **Gateway Token**: from `~/.openclaw/openclaw.json` → `gateway.auth.token`
 4. Hit **Connect**. The instance will appear in your fleet.
 
@@ -92,11 +92,11 @@ clawdesk/
 
 ## Security
 
-- SSH keys are never returned by API responses; deployers should place SQLite on encrypted storage for production
+- SSH credentials are never returned by API responses; deployers should place SQLite on encrypted storage for production
 - All agent isolation enforced at the database level (user_id scoping)
 - JWT tokens expire after 30 days
 - All SSH connections use ephemeral temp files with 0600 permissions
-- No private key material is ever returned in agent status, list, or detail responses
+- SSH credential material is never returned in agent status, list, or detail responses
 
 ## License
 

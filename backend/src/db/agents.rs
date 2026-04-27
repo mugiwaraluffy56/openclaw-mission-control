@@ -3,22 +3,22 @@ use crate::models::agent::Agent;
 
 pub fn create(conn: &Connection, agent: &Agent) -> rusqlite::Result<()> {
     conn.execute(
-        "INSERT INTO agents (id, user_id, name, ip, pem_content, gateway_token, model, accent, description) VALUES (?1,?2,?3,?4,?5,?6,?7,?8,?9)",
-        params![agent.id, agent.user_id, agent.name, agent.ip, agent.pem_content, agent.gateway_token, agent.model, agent.accent, agent.description],
+        "INSERT INTO agents (id, user_id, name, ip, ssh_key_content, gateway_token, model, accent, description) VALUES (?1,?2,?3,?4,?5,?6,?7,?8,?9)",
+        params![agent.id, agent.user_id, agent.name, agent.ip, agent.ssh_key_content, agent.gateway_token, agent.model, agent.accent, agent.description],
     )?;
     Ok(())
 }
 
 pub fn list_by_user(conn: &Connection, user_id: &str) -> rusqlite::Result<Vec<Agent>> {
     let mut stmt = conn.prepare(
-        "SELECT id, user_id, name, ip, pem_content, gateway_token, model, accent, description, created_at FROM agents WHERE user_id = ?1 ORDER BY created_at DESC"
+        "SELECT id, user_id, name, ip, ssh_key_content, gateway_token, model, accent, description, created_at FROM agents WHERE user_id = ?1 ORDER BY created_at DESC"
     )?;
     let rows = stmt.query_map(params![user_id], |row| Ok(Agent {
         id: row.get(0)?,
         user_id: row.get(1)?,
         name: row.get(2)?,
         ip: row.get(3)?,
-        pem_content: row.get(4)?,
+        ssh_key_content: row.get(4)?,
         gateway_token: row.get(5)?,
         model: row.get(6)?,
         accent: row.get(7)?,
@@ -30,14 +30,14 @@ pub fn list_by_user(conn: &Connection, user_id: &str) -> rusqlite::Result<Vec<Ag
 
 pub fn find(conn: &Connection, id: &str, user_id: &str) -> rusqlite::Result<Option<Agent>> {
     conn.query_row(
-        "SELECT id, user_id, name, ip, pem_content, gateway_token, model, accent, description, created_at FROM agents WHERE id = ?1 AND user_id = ?2",
+        "SELECT id, user_id, name, ip, ssh_key_content, gateway_token, model, accent, description, created_at FROM agents WHERE id = ?1 AND user_id = ?2",
         params![id, user_id],
         |row| Ok(Agent {
             id: row.get(0)?,
             user_id: row.get(1)?,
             name: row.get(2)?,
             ip: row.get(3)?,
-            pem_content: row.get(4)?,
+            ssh_key_content: row.get(4)?,
             gateway_token: row.get(5)?,
             model: row.get(6)?,
             accent: row.get(7)?,

@@ -7,6 +7,7 @@ CREATE TABLE IF NOT EXISTS users (
   password_hash TEXT,
   avatar_url TEXT,
   google_id TEXT,
+  github_id TEXT,
   created_at TEXT NOT NULL DEFAULT (datetime('now'))
 );
 
@@ -15,7 +16,7 @@ CREATE TABLE IF NOT EXISTS agents (
   user_id TEXT NOT NULL REFERENCES users(id) ON DELETE CASCADE,
   name TEXT NOT NULL,
   ip TEXT NOT NULL,
-  pem_content TEXT NOT NULL,
+  ssh_key_content TEXT NOT NULL,
   gateway_token TEXT NOT NULL,
   model TEXT NOT NULL DEFAULT 'unknown',
   accent TEXT NOT NULL DEFAULT 'rose',

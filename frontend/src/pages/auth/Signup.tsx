@@ -7,6 +7,7 @@ import { Input } from '../../components/ui/Input'
 import { Button } from '../../components/ui/Button'
 import { api } from '../../lib/api'
 import { useAuthStore } from '../../store/auth'
+import { OAuthButtons } from '../../components/auth/OAuthButtons'
 
 export function Signup() {
   const [name, setName] = useState('')
@@ -27,6 +28,14 @@ export function Signup() {
       <h1 className="text-xl font-bold text-white mb-1">Create account</h1>
       <p className="text-sm text-zinc-500 mb-7">Start managing your OpenClaw agents</p>
 
+      <OAuthButtons label="Sign up" />
+
+      <div className="my-5 flex items-center gap-3">
+        <div className="h-px flex-1 bg-border-1" />
+        <span className="text-2xs uppercase tracking-wider text-zinc-700">or</span>
+        <div className="h-px flex-1 bg-border-1" />
+      </div>
+
       <form onSubmit={(e) => { e.preventDefault(); signup.mutate() }} className="space-y-4">
         <Input label="Full Name" placeholder="Puneeth Aditya" value={name} onChange={(e) => setName(e.target.value)} icon={<User size={13} />} required />
         <Input label="Email" type="email" placeholder="you@example.com" value={email} onChange={(e) => setEmail(e.target.value)} icon={<Mail size={13} />} required />
@@ -42,7 +51,7 @@ export function Signup() {
         </Button>
       </form>
 
-      <p className="text-2xs text-zinc-700 text-center mt-4">By signing up you agree to our terms. PEM keys are encrypted at rest.</p>
+      <p className="text-2xs text-zinc-700 text-center mt-4">By signing up you agree to our terms.</p>
       <p className="text-xs text-zinc-600 text-center mt-3">
         Already have an account?{' '}
         <Link to="/auth/login" className="text-rose-400 hover:text-rose-300">Sign in</Link>

@@ -5,6 +5,10 @@ All API routes live under `/api`. Authenticated routes require `Authorization: B
 - `GET /api/health`
 - `POST /api/auth/signup`
 - `POST /api/auth/login`
+- `GET /api/auth/google`
+- `GET /api/auth/google/callback`
+- `GET /api/auth/github`
+- `GET /api/auth/github/callback`
 - `GET /api/auth/me`
 - `GET /api/agents`
 - `POST /api/agents`

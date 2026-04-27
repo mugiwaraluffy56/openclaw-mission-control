@@ -73,7 +73,7 @@ function Toolbar({ search, setSearch, filters }: { search: string; setSearch: (v
 export function Boards() {
   const columns = [
     { title: 'Todo', items: ['Define gateway rollback policy', 'Add Discord shard telemetry', 'Review model budget limits'] },
-    { title: 'In Progress', items: ['Rotate production SSH keys', 'Profile session restore latency'] },
+    { title: 'In Progress', items: ['Rotate production SSH credentials', 'Profile session restore latency'] },
     { title: 'Done', items: ['Ship audit export', 'Backfill uptime snapshots'] },
   ]
   return (

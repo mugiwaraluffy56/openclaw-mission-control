@@ -13,7 +13,7 @@ ClawDesk is a Rust Axum API plus a Vite React dashboard.
 - Backend changes must pass `cd backend && cargo build --release`.
 - Frontend changes must pass `cd frontend && npm run build`.
 - Keep APIs tenant-scoped by authenticated user or organization.
-- Never log SSH private keys, gateway tokens, JWTs, or webhook secrets.
+- Never log SSH credentials, gateway tokens, JWTs, or webhook secrets.
 
 ## Pull requests
 

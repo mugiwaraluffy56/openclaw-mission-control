@@ -18,7 +18,7 @@ export function AddAgentModal({ open, onClose }: Props) {
   const [step, setStep] = useState(0)
   const qc = useQueryClient()
   const [form, setForm] = useState<CreateAgentForm>({
-    name: '', ip: '', pem_content: '', gateway_token: '',
+    name: '', ip: '', ssh_key_content: '', gateway_token: '',
     model: 'claude-cli/claude-haiku-4-5', accent: 'rose', description: '',
   })
 
@@ -31,7 +31,7 @@ export function AddAgentModal({ open, onClose }: Props) {
       qc.invalidateQueries({ queryKey: ['agents'] })
       onClose()
       setStep(0)
-      setForm({ name: '', ip: '', pem_content: '', gateway_token: '', model: 'claude-cli/claude-haiku-4-5', accent: 'rose', description: '' })
+      setForm({ name: '', ip: '', ssh_key_content: '', gateway_token: '', model: 'claude-cli/claude-haiku-4-5', accent: 'rose', description: '' })
     },
     onError: (e: Error) => toast.error(e.message),
   })
@@ -82,15 +82,15 @@ export function AddAgentModal({ open, onClose }: Props) {
       {step === 2 && (
         <div className="space-y-4">
           <Textarea
-            label="PEM Key Content"
-            placeholder="-----BEGIN RSA PRIVATE KEY-----&#10;Paste your .pem file contents here&#10;-----END RSA PRIVATE KEY-----"
+            label="SSH Credential"
+            placeholder="Paste the SSH credential for this host"
             rows={10}
-            value={form.pem_content}
-            onChange={(e) => set('pem_content', e.target.value)}
+            value={form.ssh_key_content}
+            onChange={(e) => set('ssh_key_content', e.target.value)}
           />
           <div className="flex items-start gap-2 p-3 bg-amber-500/5 border border-amber-500/15 rounded-lg">
             <Info size={13} className="text-amber-400 flex-shrink-0 mt-0.5" />
-            <p className="text-2xs text-zinc-500">Your PEM key is stored encrypted in the database and used only for SSH connections to your server.</p>
+            <p className="text-2xs text-zinc-500">This credential is used only for SSH connections from the backend to your server. Use encrypted storage for production deployments.</p>
           </div>
         </div>
       )}
@@ -104,7 +104,7 @@ export function AddAgentModal({ open, onClose }: Props) {
             Next →
           </Button>
         ) : (
-          <Button variant="primary" onClick={() => create.mutate()} loading={create.isPending} disabled={!form.pem_content}>
+          <Button variant="primary" onClick={() => create.mutate()} loading={create.isPending} disabled={!form.ssh_key_content}>
             Link Agent
           </Button>
         )}

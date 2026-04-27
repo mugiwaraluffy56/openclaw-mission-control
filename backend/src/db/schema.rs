@@ -12,6 +12,7 @@ pub fn init(conn: &Connection) -> rusqlite::Result<()> {
             password_hash TEXT,
             avatar_url TEXT,
             google_id TEXT,
+            github_id TEXT,
             created_at TEXT NOT NULL DEFAULT (datetime('now'))
         );
 
@@ -20,7 +21,7 @@ pub fn init(conn: &Connection) -> rusqlite::Result<()> {
             user_id TEXT NOT NULL REFERENCES users(id) ON DELETE CASCADE,
             name TEXT NOT NULL,
             ip TEXT NOT NULL,
-            pem_content TEXT NOT NULL,
+            ssh_key_content TEXT NOT NULL,
             gateway_token TEXT NOT NULL,
             model TEXT NOT NULL DEFAULT 'unknown',
             accent TEXT NOT NULL DEFAULT 'rose',
@@ -78,5 +79,20 @@ pub fn init(conn: &Connection) -> rusqlite::Result<()> {
             invited_by TEXT REFERENCES users(id) ON DELETE SET NULL,
             created_at TEXT NOT NULL DEFAULT (datetime('now'))
         );
-    ")
+    ")?;
+    ensure_column(conn, "users", "github_id", "TEXT")?;
+    ensure_column(conn, "agents", "ssh_key_content", "TEXT")?;
+    Ok(())
+}
+
+fn ensure_column(conn: &Connection, table: &str, column: &str, definition: &str) -> rusqlite::Result<()> {
+    let mut stmt = conn.prepare(&format!("PRAGMA table_info({})", table))?;
+    let cols = stmt.query_map([], |row| row.get::<_, String>(1))?;
+    for col in cols {
+        if col? == column {
+            return Ok(());
+        }
+    }
+    conn.execute(&format!("ALTER TABLE {} ADD COLUMN {} {}", table, column, definition), [])?;
+    Ok(())
 }
