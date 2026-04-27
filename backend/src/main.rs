@@ -7,10 +7,19 @@ mod ws;
 
 use axum::{middleware, routing::{get, post, delete}, Router};
 use tower_http::cors::{Any, CorsLayer};
+use tower_http::services::{ServeDir, ServeFile};
 
 #[tokio::main]
 async fn main() {
-    let pool = db::init_pool("mission_control.db");
+    let db_path = std::env::var("OPENCLAW_DB_PATH")
+        .or_else(|_| std::env::var("MISSION_CONTROL_DB"))
+        .unwrap_or_else(|_| "mission_control.db".to_string());
+    let pool = db::init_pool(&db_path);
+    let port = std::env::var("PORT")
+        .ok()
+        .and_then(|p| p.parse::<u16>().ok())
+        .unwrap_or(3001);
+    let static_dir = std::env::var("CLAWDESK_STATIC_DIR").unwrap_or_else(|_| "public".to_string());
 
     let cors = CorsLayer::new().allow_origin(Any).allow_methods(Any).allow_headers(Any);
 
@@ -43,9 +52,13 @@ async fn main() {
         .route("/ws/logs/:id", get(ws::logs::ws_logs))
         .layer(middleware::from_fn(auth::middleware::make_middleware(pool.clone())))
         .layer(cors)
-        .with_state(pool);
+        .with_state(pool)
+        .fallback_service(
+            ServeDir::new(&static_dir)
+                .not_found_service(ServeFile::new(format!("{}/index.html", static_dir)))
+        );
 
-    let listener = tokio::net::TcpListener::bind("0.0.0.0:3001").await.unwrap();
-    println!("ClawDesk API: http://0.0.0.0:3001");
+    let listener = tokio::net::TcpListener::bind(("0.0.0.0", port)).await.unwrap();
+    println!("ClawDesk: http://0.0.0.0:{}", port);
     axum::serve(listener, app).await.unwrap();
 }

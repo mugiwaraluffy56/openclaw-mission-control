@@ -86,6 +86,7 @@ clawdesk/
 
 - [Getting Started](docs/getting-started.md)
 - [Deployment Guide](docs/deployment.md)
+- [Railway Deployment](docs/railway.md)
 - [API Reference](docs/api-reference.md)
 - [Contributing](CONTRIBUTING.md)
 - [Changelog](CHANGELOG.md)
